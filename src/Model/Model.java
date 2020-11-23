@@ -7,10 +7,18 @@ public class Model {
 		
 	}
 	
-	public Model getInstance() {
+	public static Model getInstance() throws ClassNotFoundException{
 		if(ModelInstance == null) {
 			ModelInstance = new Model();
 		}
 		return ModelInstance;
+	}
+	
+	public String checkForempty(String s) {
+		String result = "yes";
+		if(s.equals("")) {
+			result = "no";
+		}
+		return result;
 	}
 }

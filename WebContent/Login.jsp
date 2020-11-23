@@ -11,6 +11,8 @@ Welcome to Login Page!
 <form method="post" action="Profile" id="logFrm">
 	<fieldset>
 		<legend>Guest Login</legend>
+		<small>${Err}</small>
+		<br>
 		<label for="id">ID:</label>
 		<br />
 		<input type="email" id="id" name="id"/>
