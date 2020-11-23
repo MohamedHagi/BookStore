@@ -52,14 +52,42 @@ public class Profile extends HttpServlet {
 			String checkPass = m.checkForempty(pass);
 			if(checkID.equals("no") || checkPass.equals("no")) {
 				request.setAttribute("Err", "Check for Empty field(s)");
-				String target = "./Login.jsp";
-				request.getRequestDispatcher(target).forward(request, response);
-				return;
+				try {
+					String target = "./Login.jsp";
+					request.getRequestDispatcher(target).forward(request, response);
+					return;
+				}catch(Exception e) {
+					e.printStackTrace();
+				}
 			}else {
 				request.setAttribute("profileName", request.getParameter("id"));
-				String target = "./Homeprof.jsp";
+				try {
+					String target = "./Homeprof.jsp";
+					request.getRequestDispatcher(target).forward(request, response);
+					return;
+				}catch(Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		if(request.getParameter("btnLogout") != null) {
+			try {
+				String target = "./Logout.jsp";
 				request.getRequestDispatcher(target).forward(request, response);
 				return;
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		
+		if(request.getParameter("cartBtn") != null) {
+			try {
+				String target = "./CheckOut.jsp";
+				request.getRequestDispatcher(target).forward(request, response);
+				return;
+			}catch(Exception e) {
+				e.printStackTrace();
 			}
 		}
 	}

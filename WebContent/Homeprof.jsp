@@ -53,7 +53,11 @@
 </head>
 <body>
 	${profileName}
+	<form method="get" action="Profile" id="frm">
+	<button name="btnLogout">Logout</button>
 	<br>
+	<button name="cartBtn">View Cart</button>
+	</form>
 	<label for="cart">Your cart:</label>
 	<div class="wrapper">
 		<ul>

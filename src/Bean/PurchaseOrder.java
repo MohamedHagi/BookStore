@@ -5,22 +5,13 @@ public class PurchaseOrder {
 	private String POid;
 	private String fname;
 	private String lname;
-	private String st;
+	private Status st;
 	
-	public PurchaseOrder(String POid, String fname, String lname, String st) {
+	public PurchaseOrder(String POid, String fname, String lname, Status st) {
 		this.POid = POid;
 		this.fname = fname;
 		this.lname = lname;
-		Status[] s = Status.values();
-		for(int i = 0; i < s.length; i++) {
-			if(s[i].toString().equals(st)) {
-				this.st = st;
-				break;
-			}else {
-				System.out.println("Wrong enum value");
-				throw new IllegalArgumentException();
-			}
-		}
+		this.st = st;
 	}
 
 	public String getPOid() {
@@ -47,20 +38,11 @@ public class PurchaseOrder {
 		this.lname = lname;
 	}
 
-	public String getSt() {
+	public Status getSt() {
 		return st;
 	}
 
-	public void setSt(String st) {
-		Status[] s = Status.values();
-		for(int i = 0; i < s.length; i++) {
-			if(s[i].toString().equals(st)) {
-				this.st = st;
-				break;
-			}else {
-				System.out.println("Wrong enum value");
-				throw new IllegalArgumentException();
-			}
-		}
+	public void setSt(Status st) {
+		this.st = st;
 	}
 }
