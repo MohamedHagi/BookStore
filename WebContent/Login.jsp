@@ -11,7 +11,7 @@ Welcome to Login Page!
 <form method="post" action="Profile" id="logFrm">
 	<fieldset>
 		<legend>Guest Login</legend>
-		<small>${Err}</small>
+		<small>${Err}</small>  
 		<br>
 		<label for="id">ID:</label>
 		<br />
@@ -22,6 +22,8 @@ Welcome to Login Page!
 		<input type="password" id="pass" name="pass"/>
 		<br/>
 		<button name="btnSignin">Login</button>
+		<br>
+		<a href="./Register.jsp">Dont have an account? register with us today</a>
 	</fieldset>
 </form>
 </body>

@@ -59,6 +59,7 @@ public class Reg extends HttpServlet {
 			String checklastName = m.checkForempty(lastName);
 			String checkpass = m.checkForempty(pass);
 			String checkpassr = m.checkForempty(passr);
+			boolean res = m.verifyRegisterID(id);
 
 			if (checkId.equals("no") || checkfirstName.equals("no") || checklastName.equals("no")
 					|| checkpass.equals("no") || checkpassr.equals("no")) {
@@ -70,7 +71,28 @@ public class Reg extends HttpServlet {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-			} else {
+			}else if(res) {
+				request.setAttribute("Err", "Sorry this email is already registered with us"
+						+ " Forgot your password?");
+				String path = "./Register.jsp";
+				try {
+					request.getRequestDispatcher(path).forward(request, response);
+					return;
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			} else if(!(m.passMatch(pass, passr))) {
+				request.setAttribute("Err", "Please reenter your Password: Passwords dont match");
+				String path = "./Register.jsp";
+				try {
+					request.getRequestDispatcher(path).forward(request, response);
+					return;
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+			
+			else {
 				String path = "./Regconf.jsp";
 				try {
 					request.getRequestDispatcher(path).forward(request, response);

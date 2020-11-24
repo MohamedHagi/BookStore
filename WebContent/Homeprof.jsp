@@ -7,20 +7,19 @@
 <title>${profileName}</title>
 <style>
 .wrapper {
-	width: 860px;
 	margin: 0 auto;
 }
 
 .wrapper ul {
 	list-style: none;
-	margin-top: 2%;
+	margin-top: 1%;
 }
 
 .wrapper ul li {
 	background: #262626;
-	width: 170px;
+	width: 100px;
 	border: 1px solid #fff;
-	height: 50px;
+	height: 45px;
 	line-height: 50px;
 	text-align: center;
 	float: left;
@@ -53,10 +52,19 @@
 </head>
 <body>
 	${profileName}
+	<br>
+	${fname}, ${lname} 
+	<br>
+	Date Joined: ${date}
+	<br>
+	Address: ${stNo} ${stName} ${prov} ${cont}
+	<br>
 	<form method="get" action="Profile" id="frm">
 	<button name="btnLogout">Logout</button>
 	<br>
 	<button name="cartBtn">View Cart</button>
+	<br>
+	<button name="surfBtn">Surf</button>
 	</form>
 	<label for="cart">Your cart:</label>
 	<div class="wrapper">

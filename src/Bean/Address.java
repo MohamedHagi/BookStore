@@ -10,6 +10,10 @@ public class Address {
 	private String country;
 	private String phoneNo;
 	
+	public Address() {
+		
+	}
+	
 	public Address(String aid, String street, int streetNo, int unitNo, String province, String country,
 			String phoneNo) {
 		this.aid = aid;

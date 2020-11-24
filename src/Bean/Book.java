@@ -5,12 +5,18 @@ public class Book {
 	private String title;
 	private double price;
 	private String category;
+	private int quantity;
 	
-	public Book(String bid, String title, double price, String category) {
+	public Book() {
+		
+	}
+	
+	public Book(String bid, String title, double price, String category, int quantity) {
 		this.bid = bid;
 		this.title = title;
 		this.price = price;
 		this.category = category;
+		this.quantity = quantity;
 	}
 
 	public String getBid() {
@@ -43,5 +49,13 @@ public class Book {
 
 	public void setCategory(String category) {
 		this.category = category;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
 }

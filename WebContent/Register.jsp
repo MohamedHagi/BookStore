@@ -11,7 +11,6 @@ Registration Page!
 <form method="post" action="Reg" id="logFrm">
 	<fieldset>
 		<legend>Register</legend>
-		<br>
 		<small>${Err}</small>
 		<br>
 		<label for="FirstName">FirstName:</label>
