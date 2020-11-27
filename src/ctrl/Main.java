@@ -17,7 +17,7 @@ import Model.Model;
 /**
  * Servlet implementation class Main
  */
-@WebServlet(asyncSupported = true, urlPatterns = {"/Main", "/Main/*", "/Main/Login", "/Main/Register", "/Main/Surf"})
+@WebServlet(asyncSupported = true, urlPatterns = {"/Main", "/Main/Login", "/Main/Register", "/Main/Surf"})
 public class Main extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
