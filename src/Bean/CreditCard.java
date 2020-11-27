@@ -11,6 +11,10 @@ public class CreditCard {
 	String fname;
 	String lnmae;
 	
+	public CreditCard() {
+		
+	}
+
 	public CreditCard(Date expirydate, String cardno, String csv, String fname, String lnmae) {
 		this.expirydate = expirydate;
 		this.cardno = cardno;

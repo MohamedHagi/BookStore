@@ -93,6 +93,18 @@ public class Reg extends HttpServlet {
 			}
 			
 			else {
+				boolean ver = m.addCustRegistrationInfo(id, firstName, lastName);
+				if(ver) {
+					boolean verify = m.addCustInfoInLoginTable(id, pass);
+					boolean verifyTwoCart = m.addCustIntoCartTable(id);
+					if(verify && verifyTwoCart) {
+						System.out.println(verify);
+						request.setAttribute("vr", "You have successfully registered"
+								+ " and your id is: " + id);
+					}
+				}else {
+					request.setAttribute("vr", "Sorry your registration was unsuccessfull try again");
+				}
 				String path = "./Regconf.jsp";
 				try {
 					request.getRequestDispatcher(path).forward(request, response);

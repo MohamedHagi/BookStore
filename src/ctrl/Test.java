@@ -1,6 +1,9 @@
 package ctrl;
 
 import java.io.IOException;
+import java.io.Writer;
+import java.sql.Date;
+import java.util.Calendar;
 import java.util.HashSet;
 
 import javax.servlet.ServletException;
@@ -10,10 +13,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Bean.Book;
+import Bean.CreditCard;
 import Bean.Customers;
 import Bean.LoginType;
 import DAO.BookDAO;
+import DAO.CustProfileDAO;
 import DAO.LoginDAO;
+import Model.Model;
 
 
 /**
@@ -37,16 +43,16 @@ public class Test extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		try {
-			LoginDAO ld = new LoginDAO();
-			LoginType lt = ld.getLoginInfo("mathewhayden@gmail.com", "admin");
-			System.out.println(lt.getEmail() + lt.getPassword());
-			if(lt.getEmail().equals("mathewhayden@gmail.com") && lt.getPassword().equals("admin")) {
-				System.out.println("true");
-			}else {
-				System.out.println("false");
+			try {
+				Model s = Model.getInstance();
+				String j = s.getXMLforRest(1);
+				System.out.println(j);
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (NullPointerException e) {
+			System.out.println("enter your add");
 		}
 	}
 

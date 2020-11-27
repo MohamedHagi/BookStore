@@ -4,40 +4,55 @@ import java.util.ArrayList;
 
 public class Cart {
 	
-	private String cartID;
+	private int custID;
 	ArrayList<Book> b;
 	
-	public Cart(String cartID) {
-		this.cartID = cartID;
+	public Cart() {
+		
+	}
+	
+	public Cart(int custID) {
+		this.custID = custID;
 		this.b = new ArrayList<Book>();
 	}
 
-	public String getCartID() {
-		return cartID;
+
+	public int getCustID() {
+		return custID;
 	}
 
-	public void setCartID(String cartID) {
-		this.cartID = cartID;
+
+	public void setCustID(int custID) {
+		this.custID = custID;
 	}
+
 
 	public ArrayList<Book> getB() {
 		return b;
 	}
 
+
 	public void setB(ArrayList<Book> b) {
-		if(this.b.size() == 0) {
-			for(int i  = 0; i < b.size(); i++) {
-				this.b.add(b.get(i));
-			}
-		}else {
-			for(int i = this.b.size(); i < b.size(); i++) {
-				this.b.add(b.get(i));
-			}
+		this.b = b;
+	}
+
+
+	public ArrayList<Book> getList() {
+		return b;
+	}
+
+	public void addFromSession(ArrayList<Book> blist) {
+		for(Book book: blist) {
+			this.b.add(book);
 		}
 	}
 	
 	public void add(Book b) {
 		this.b.add(b);
+	}
+	
+	public int getSize() {
+		return this.b.size();
 	}
 	
 	public void remove(Book b) {

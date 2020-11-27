@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Customers {
 
-	String cid;
+	int cid;
 	String fname;
 	String lname;
 	String email;
@@ -16,7 +16,7 @@ public class Customers {
 		
 	}
 	
-	public Customers(String cid, String fname, String lname, String email, Address add, CreditCard cc,
+	public Customers(int cid, String fname, String lname, String email, Address add, CreditCard cc,
 			Date dateJoined) {
 		this.cid = cid;
 		this.fname = fname;
@@ -27,11 +27,11 @@ public class Customers {
 		this.dateJoined = dateJoined;
 	}
 
-	public String getCid() {
+	public int getCid() {
 		return cid;
 	}
 
-	public void setCid(String cid) {
+	public void setCid(int cid) {
 		this.cid = cid;
 	}
 

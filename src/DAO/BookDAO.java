@@ -33,7 +33,7 @@ public class BookDAO {
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				Book b = new Book();
-				b.setBid(rs.getString("bid"));
+				b.setBid(rs.getInt("bid"));
 				b.setTitle(rs.getString("tittle"));
 				b.setPrice(rs.getDouble("price"));
 				b.setCategory(rs.getString("category"));
@@ -56,7 +56,7 @@ public class BookDAO {
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				Book b = new Book();
-				b.setBid(rs.getString("bid"));
+				b.setBid(rs.getInt("bid"));
 				b.setTitle(rs.getString("tittle"));
 				b.setPrice(rs.getDouble("price"));
 				b.setCategory(rs.getString("category"));
@@ -83,7 +83,7 @@ public class BookDAO {
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				Book b = new Book();
-				b.setBid(rs.getString("bid"));
+				b.setBid(rs.getInt("bid"));
 				b.setTitle(rs.getString("tittle"));
 				b.setPrice(rs.getDouble("price"));
 				b.setCategory(rs.getString("category"));
@@ -98,5 +98,28 @@ public class BookDAO {
 			e.printStackTrace();
 		}
 		return result;
+	}
+	
+	public Book getBook(int bid) {
+		Book b = new Book();
+		try {
+			Connection c = ds.getConnection();
+			String sql = "select bid, tittle, price, category from book where bid="+ bid +";";
+			PreparedStatement ps = c.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				b.setBid(rs.getInt("bid"));
+				b.setTitle(rs.getString("tittle"));
+				b.setPrice(rs.getDouble("price"));
+				b.setCategory(rs.getString("category"));
+			}
+			rs.close();
+			ps.close();
+			c.close();
+			return b;
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return b;
 	}
 }

@@ -57,8 +57,13 @@
 	<br>
 	Date Joined: ${date}
 	<br>
-	Address: ${stNo} ${stName} ${prov} ${cont}
+	<form method="get" action="AddInfo">
+		${add}
+	</form>
 	<br>
+	${stNo} ${stName} ${prov} ${cont}
+	<br>
+	${cardNo}  ${csv}  ${cardfName} ${cardlName} ${expdate} 
 	<form method="get" action="Profile" id="frm">
 	<button name="btnLogout">Logout</button>
 	<br>

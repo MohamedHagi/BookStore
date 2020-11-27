@@ -7,7 +7,7 @@
 <title>${appName}</title>
 </head>
 <body>
-You have been registered your user name is: ${cred}
+${vr}
 <br>
 Click here to Login:
 <br>

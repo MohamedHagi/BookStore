@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Bean.Book;
+import Bean.CreditCard;
 import Bean.Customers;
 import Model.Model;
 /**
@@ -81,11 +82,22 @@ public class Profile extends HttpServlet {
 				request.setAttribute("fname", c.getFname());
 				request.setAttribute("lname", c.getLname());
 				request.setAttribute("date", c.getDateJoined());
-				request.setAttribute("stNo", c.getAdd().getUnitNo());
-				request.setAttribute("stName", c.getAdd().getStreet());
-				request.setAttribute("prov", c.getAdd().getProvince());
-				request.setAttribute("cont", c.getAdd().getCountry());
-				request.setAttribute("profileName", request.getParameter("id"));
+				try {
+					request.setAttribute("stNo", "Address: " + c.getAdd().getUnitNo());
+					request.setAttribute("stName", c.getAdd().getStreet());
+					request.setAttribute("prov", c.getAdd().getProvince());
+					request.setAttribute("cont", c.getAdd().getCountry());
+					CreditCard cc = m.PrintcustCreditCardInfo(ID);
+					request.setAttribute("cardNo", "Credit Card: " + cc.getCardno());
+					request.setAttribute("csv", cc.getCsv());
+					request.setAttribute("cardfName", cc.getFname());
+					request.setAttribute("cardlName", cc.getLnmae());
+					request.setAttribute("expdate", cc.getExpirydate());
+					request.setAttribute("profileName", request.getParameter("id"));
+				}catch(NullPointerException e){
+					request.setAttribute("add", "Add your address <button>Add Information</button>");
+				}
+					
 				try {
 					String target = "./Homeprof.jsp";
 					request.getRequestDispatcher(target).forward(request, response);

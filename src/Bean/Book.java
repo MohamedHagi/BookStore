@@ -1,7 +1,10 @@
 package Bean;
 
+import javax.xml.bind.annotation.XmlType;
+
+@XmlType(propOrder = {"bid", "title", "price", "category"})
 public class Book {
-	private String bid;
+	private int bid;
 	private String title;
 	private double price;
 	private String category;
@@ -11,7 +14,7 @@ public class Book {
 		
 	}
 	
-	public Book(String bid, String title, double price, String category, int quantity) {
+	public Book(int bid, String title, double price, String category, int quantity) {
 		this.bid = bid;
 		this.title = title;
 		this.price = price;
@@ -19,11 +22,11 @@ public class Book {
 		this.quantity = quantity;
 	}
 
-	public String getBid() {
+	public int getBid() {
 		return bid;
 	}
 
-	public void setBid(String bid) {
+	public void setBid(int bid) {
 		this.bid = bid;
 	}
 
