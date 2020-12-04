@@ -75,7 +75,9 @@
               <div class="col-lg-6">
                 <p class="text-white small text-uppercase mb-2">Winter 2020</p>
                 <h1 class="h2 text-uppercase mb-3 text-white">20% off on new season</h1>
-                <a class="btn btn-light" href="/BookStore/Surf.jsp">Shop Now</a>
+                <form action="Main" method="post">
+                <button id="surf" name="btnSurf" class="btn btn-light">Shop Now</button>
+                </form>
               </div>
                   
             </div>

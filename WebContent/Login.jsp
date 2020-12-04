@@ -88,7 +88,7 @@
 		<small>${Err}</small>  
 		<br>
 		<label class="text-small text-uppercase" for="firstName">Email</label>
-                    <input class="form-control form-control-lg" id="id" type="email" placeholder="Enter your email address">
+                    <input class="form-control form-control-lg" id="id" name="id" type="email" placeholder="Enter your email address">
 	<br>
 	<label class="text-small text-uppercase" for="firstName">Password</label>
                     <input class="form-control form-control-lg" id="pass" type="password" name = "pass" placeholder="Enter your password">

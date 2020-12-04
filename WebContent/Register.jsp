@@ -82,24 +82,24 @@
           </div>
         </section>
 
-<form method="post" action="Profile" id="logFrm">
+<form method="post" action="Reg" id="logFrm">
 	<fieldset>
 		<small>${Err}</small>  
 		<br>
 		<label class="text-small text-uppercase" for="firstName">First Name</label>
-                    <input class="form-control form-control-lg" id="fname" type="text" placeholder="Enter your first name">
+                    <input class="form-control form-control-lg" id="fname" name="fname" type="text" placeholder="Enter your first name">
 	<br>
 	<label class="text-small text-uppercase" for="firstName">Last Name</label>
-                    <input class="form-control form-control-lg" id="lname" type="text" placeholder="Enter your last name">
+                    <input class="form-control form-control-lg" id="lname" name="lname" type="text" placeholder="Enter your last name">
 	<br>
 		<label class="text-small text-uppercase" for="firstName">Email</label>
-                    <input class="form-control form-control-lg" id="id" type="email" placeholder="Enter your email address">
+                    <input class="form-control form-control-lg" id="id" name="id" type="email" placeholder="Enter your email address">
 	<br>
 	<label class="text-small text-uppercase" for="firstName">Password</label>
                     <input class="form-control form-control-lg" id="pass" type="password" name = "pass" placeholder="Enter your password">
 		<br/>
 		<label class="text-small text-uppercase" for="firstName">Re-enter Password</label>
-                    <input class="form-control form-control-lg" id="passr" type="password" placeholder="Re-enter your password">
+                    <input class="form-control form-control-lg" id="passr"  name="passr" type="password" placeholder="Re-enter your password">
 	<br>
 		<button class ="btn btn-outline-dark float-left text-small text-uppercase" name="btnRegister">Register</button>
 		<br>
