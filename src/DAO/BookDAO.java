@@ -122,4 +122,47 @@ public class BookDAO {
 		}
 		return b;
 	}
+	
+	/*
+	 * Delete from the book table after inserting into cartItem table
+	 * */
+	public int deleteFromTable(int bid) {
+		int result = 0;
+		try {
+			Connection c = ds.getConnection();
+			String sql = "delete from book where bid=?;";
+			PreparedStatement ps = c.prepareStatement(sql);
+			ps.setInt(1, bid);
+			result = ps.executeUpdate();
+			ps.close();
+			c.close();
+			return result;
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	/*
+	 * Insert into book after deleting from cart item
+	 * */
+	public int InsertIntoBookTable(int bid, String tittle, double price, String category) {
+		int result = 0;
+		try {
+			Connection c = ds.getConnection();
+			String sql = "INSERT INTO book (bid, tittle, price, category) VALUES (?, ?, ?, ?);";
+			PreparedStatement ps = c.prepareStatement(sql);
+			ps.setInt(1, bid);
+			ps.setString(2, tittle);
+			ps.setDouble(3, price);
+			ps.setString(4, category);
+			result = ps.executeUpdate();
+			ps.close();
+			c.close();
+			return result;
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 }

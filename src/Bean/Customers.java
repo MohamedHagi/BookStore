@@ -11,13 +11,14 @@ public class Customers {
 	Address add;
 	CreditCard cc;
 	Date dateJoined;
+	boolean lock;
 	
 	public Customers() {
 		
 	}
 	
 	public Customers(int cid, String fname, String lname, String email, Address add, CreditCard cc,
-			Date dateJoined) {
+			Date dateJoined, boolean lock) {
 		this.cid = cid;
 		this.fname = fname;
 		this.lname = lname;
@@ -25,6 +26,15 @@ public class Customers {
 		this.add = add;
 		this.cc = cc;
 		this.dateJoined = dateJoined;
+		this.lock = lock;
+	}
+
+	public boolean isLock() {
+		return lock;
+	}
+
+	public void setLock(boolean lock) {
+		this.lock = lock;
 	}
 
 	public int getCid() {

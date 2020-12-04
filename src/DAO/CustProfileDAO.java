@@ -5,12 +5,14 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import Bean.Address;
+import Bean.CartItem;
 import Bean.CreditCard;
 import Bean.Customers;
 
@@ -129,5 +131,90 @@ public class CustProfileDAO {
 		}
 		return result;
 	}
+	
+	/*
+	 * @returns the items in the cart
+	 * */
+	public ArrayList<CartItem> getTheUsersCart(int cid) {
+		ArrayList<CartItem> c = new ArrayList<CartItem>();
+		try {
+		Connection con = ds.getConnection();
+		String sql = "select addID, addcartID, productID, createdate, bookTittle, bookprice, category "
+				+ "from cartitem "
+				+ "where addcartID in "
+				+ "(select cartID from cart where user_ID=" + cid +");";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ResultSet rs = ps.executeQuery();
+		while(rs.next()) {
+			CartItem ci = new CartItem();
+			ci.setAddID(rs.getInt("addID"));
+			int cartId = rs.getInt("addcartId");
+			System.out.println(cartId);
+			ci.setProductID(rs.getInt("productID"));
+			ci.setDate(rs.getDate("createdate"));
+			ci.setBookTittle(rs.getString("bookTittle"));
+			ci.setAddCartID(cartId);
+			ci.setPrice(rs.getDouble("bookprice"));
+			ci.setCategory(rs.getString("category"));
+			c.add(ci);			
+		}
+		rs.close();
+		ps.close();
+		con.close();
+		return c;
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return c;
+	}
+	
+	/*
+	 * @returns the sum total of all the items in the cart
+	 * */
+	public double getCartTotal(String email) {
+		double result = 0.0;
+		try {
+			Connection c = ds.getConnection();
+			String sql = "select sum(bookprice) AS total from cartitem "
+					+ "where addcartID in (select cartID from cart where user_ID in "
+					+ "(select cid from customer where email='" + email +"')) "
+					+ "group by addcartID;";
+			PreparedStatement ps = c.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				double d = rs.getDouble("total");
+				result = d;
+			}
+			rs.close();
+			ps.close();
+			c.close();
+			return result;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	/*
+	 * deletes items from the cart after the remove btn operation
+	 * */
+	public int deleteFromCartItemTable(int addCartID) {
+		int result = 0;
+		try {
+			Connection c = ds.getConnection();
+			String sql = "delete from cartitem where addID=?;";
+			PreparedStatement ps = c.prepareStatement(sql);
+			ps.setInt(1, addCartID);
+			result = ps.executeUpdate();
+			ps.close();
+			c.close();
+			return result;
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
 
 }

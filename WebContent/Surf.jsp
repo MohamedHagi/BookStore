@@ -116,12 +116,37 @@ ${fail}
 <option value="Science">Science</option>
 <option value="Fiction">Fiction</option>
 <option value="Engineering">Engineering</option>
-<option value="All">All Category</option>
+<option value="All" selected="${sess}">All Category</option>
 </select>
-<input type="text" name="search" id="search"/> <button id="srchBtn">Search</button> </form>
+<input type="text" name="search" id="search" value="${val}"/> <button id="srchBtn">Search</button> </form>
 <br />
+<br/>
+<form action="Profile" method="post">
+<button name="viewProfile"> Profile </button>
+</form>
+<br/>
+<form action="surfing" method="post">
+<button name="viewCart">CheckOut</button>
+</form>
+${fail} 
+<table>
+<tr>
+<th>Tittle</th>
+<th>Price</th>
+</tr>
+<c:forEach var="CartItem" items="${cartList}">
+<tr>
+<td>${CartItem.bookTittle}</td>
+<td>${CartItem.price}</td>
+</tr>
+</c:forEach>
+</table>
+<br/>
 ${Er}
+${succ}
+${fail}
 <br />
+<<<<<<< HEAD
 
 <%-- <c:forEach var="book" items="${hash}"> --%>
   
@@ -163,5 +188,39 @@ ${Er}
         
          <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> 
   </div>
+=======
+<!-- use c:for each to fill the table -->
+<table>
+  <tr>
+    <th>Item</th>
+    <th>Description</th>
+    <th>Price</th>
+    <th>Category</th>
+    <th>Quantity</th>
+    <th>Details</th>
+    <th>Add</th>
+  </tr>
+  <c:forEach var="book" items="${hash}">
+  <tr>
+    <td>${book.bid}</td>
+    <td>${book.title}</td>
+    <td>${book.price}</td>
+    <td>${book.category}</td>
+    <td>${book.quantity}</td>
+    <td><a href="./Details.jsp">View More</a></td>
+    <td>
+    	<form method="post" action="surfing" id="tableFrm">
+    		<input type="hidden" name="bid" value="${book.bid}"/>
+    		<input type="hidden" name="tittle" value="${book.title}" />
+    		<input type="hidden" name="price" value="${book.price}" />
+    		<input type="hidden" name="quantity" value="${book.quantity}" />
+    		<input type="hidden" name="category" value="${book.category}"/>
+    		<button name="addToCart">Add to cart</button>
+    	</form>
+    </td>
+  </tr>
+  </c:forEach>
+</table>
+>>>>>>> a27e370de21a111de0ec70a5e8b7df2fe1e92dd7
 </body>
 </html>

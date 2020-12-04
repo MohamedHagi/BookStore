@@ -1,31 +1,23 @@
 package ctrl;
 
 import java.io.IOException;
-
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Bean.Recipt;
-import DAO.ProcessOrderDAO;
-import DAO.ReciptDAO;
-import DAO.ShippingDAO;
-
-
 /**
- * Servlet implementation class Test
+ * Servlet implementation class logout
  */
-@WebServlet("/Test")
-public class Test extends HttpServlet {
+@WebServlet("/logout")
+public class logout extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Test() {
+    public logout() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,14 +26,18 @@ public class Test extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		ReciptDAO rd = new ReciptDAO();
-		Recipt r = new Recipt();
-		long milis = System.currentTimeMillis();
-		java.sql.Date date = new java.sql.Date(milis);
-		r.setCust_id(10);
-		r.setDate(date);
-		r.setAddress(100);
+		
+		try {
+			System.out.println(request.getRequestURI());
+			System.out.println("Before invalidation the id value = " + request.getSession().getAttribute("ID"));
+			request.getSession().invalidate();
+			request.getSession(false);
+			System.out.println("After invalidation the id value = " + request.getSession().getAttribute("ID"));
+			request.getRequestDispatcher("./Logout.jsp").forward(request, response);
+			return;
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
