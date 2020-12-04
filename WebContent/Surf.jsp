@@ -71,7 +71,7 @@
 
 
   <div class="container">
-        <!-- HERO SECTION-->
+     
         <section class="py-5 bg-light">
           <div class="container">
             <div class="row px-4 px-lg-5 py-lg-4 align-items-center">
@@ -83,31 +83,7 @@
           </div>
         </section>
 
-<form action="Profile" method="post">
-<button name="viewProfile"> Profile </button>
-</form>
-<br/>
-<form action="surfing" method="post">
-<button name="viewCart">CheckOut</button>
-</form>
-${fail} 
-<table>
-<tr>
-<th>Tittle</th>
-<th>Price</th>
-</tr>
-<c:forEach var="CartItem" items="${cartList}">
-<tr>
-<td>${CartItem.bookTittle}</td>
-<td>${CartItem.price}</td>
-</tr>
-</c:forEach>
-</table>
-<br/>
-${Er}
-${succ}
-${fail}
-<br />
+
 
 
 <br />
@@ -146,7 +122,7 @@ ${Er}
 ${succ}
 ${fail}
 <br />
-<<<<<<< HEAD
+
 
 <%-- <c:forEach var="book" items="${hash}"> --%>
   
@@ -189,7 +165,7 @@ ${fail}
          <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> 
   </div>
 =======
-<!-- use c:for each to fill the table -->
+<!-- use c:for each to fill the table
 <table>
   <tr>
     <th>Item</th>
@@ -221,6 +197,6 @@ ${fail}
   </tr>
   </c:forEach>
 </table>
->>>>>>> a27e370de21a111de0ec70a5e8b7df2fe1e92dd7
+>>>>>>> a27e370de21a111de0ec70a5e8b7df2fe1e92dd7 -->
 </body>
 </html>
