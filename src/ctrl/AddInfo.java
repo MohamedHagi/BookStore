@@ -61,36 +61,41 @@ public class AddInfo extends HttpServlet {
 			String cFncme = request.getParameter("fname");
 			String cLname = request.getParameter("lname");
 			String expDate = request.getParameter("expdate");
-			boolean ret = m.addCustInfoInAddTable(sName, sNum, unit, c.getCid(), postCode, city, state, cont);
-			boolean retTwo = m.addCreditCardData(cNum, cCsv, cFncme, cLname, expDate, c.getCid());
-			if(ret && retTwo) {
-				Customers cTwo = m.PrintcustInfo(email); 
-				request.setAttribute("fname", cTwo.getFname());
-				request.setAttribute("lname", cTwo.getLname());
-				request.setAttribute("date", cTwo.getDateJoined());
-				try {
-					request.setAttribute("stNo", "Address: " + cTwo.getAdd().getUnitNo());
-					request.setAttribute("stName", cTwo.getAdd().getStreet());
-					request.setAttribute("prov", cTwo.getAdd().getProvince());
-					request.setAttribute("cont", cTwo.getAdd().getCountry());
-					CreditCard cc = m.PrintcustCreditCardInfo(email);
-					request.setAttribute("cardNo", "Credit Card: " + cc.getCardno());
-					request.setAttribute("csv", cc.getCsv());
-					request.setAttribute("cardfName", cc.getFname());
-					request.setAttribute("cardlName", cc.getLnmae());
-					request.setAttribute("expdate", cc.getExpirydate());
-					request.setAttribute("profileName", request.getParameter("id"));
-				}catch(NullPointerException e){
-					request.setAttribute("add", "Add your address <button>Add Information</button>");
-				}
-				try {
-				String path = "./Homeprof.jsp";
-				request.getRequestDispatcher(path).forward(request, response);
-				return;
-				}catch(Exception e) {
-					e.printStackTrace();
+			boolean value = m.checkTheString(sName, sNum, postCode, city, state, cont);
+			boolean valuTwo = m.checkTheString(cNum, cCsv, cFncme, cLname, expDate);
+			if(value && valuTwo)  {
+				boolean ret = m.addCustInfoInAddTable(sName, sNum, unit, c.getCid(), postCode, city, state, cont);
+				boolean retTwo = m.addCreditCardData(cNum, cCsv, cFncme, cLname, expDate, c.getCid());
+				if(ret && retTwo) {
+					Customers cTwo = m.PrintcustInfo(email); 
+					request.setAttribute("fname", cTwo.getFname());
+					request.setAttribute("lname", cTwo.getLname());
+					request.setAttribute("date", cTwo.getDateJoined());
+					try {
+						request.setAttribute("stNo", "Address: " + cTwo.getAdd().getUnitNo());
+						request.setAttribute("stName", cTwo.getAdd().getStreet());
+						request.setAttribute("prov", cTwo.getAdd().getProvince());
+						request.setAttribute("cont", cTwo.getAdd().getCountry());
+						CreditCard cc = m.PrintcustCreditCardInfo(email);
+						request.setAttribute("cardNo", "Credit Card: " + cc.getCardno());
+						request.setAttribute("csv", cc.getCsv());
+						request.setAttribute("cardfName", cc.getFname());
+						request.setAttribute("cardlName", cc.getLnmae());
+						request.setAttribute("expdate", cc.getExpirydate());
+						request.setAttribute("profileName", request.getParameter("id"));
+					}catch(NullPointerException e){
+						request.setAttribute("add", "Add your address <button>Add Information</button>");
+					}
+					try {
+					String path = "./Homeprof.jsp";
+					request.getRequestDispatcher(path).forward(request, response);
+					return;
+					}catch(Exception e) {
+						e.printStackTrace();
+					}
 				}
 			}else {
+				request.setAttribute("Error", "Check for empty fields");
 				String path = "./AddAddress.jsp";
 				request.getRequestDispatcher(path).forward(request, response);
 				return;

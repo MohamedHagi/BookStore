@@ -2,7 +2,6 @@ package Model;
 
 import java.io.StringWriter;
 
-
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -253,7 +252,12 @@ public class Model {
 			String city, String prov, String cont) {
 		boolean result = false;
 		int streetNom = Integer.parseInt(streetNo);
-		int unitNom = Integer.parseInt(unitNo);
+		int unitNom = 0;
+		if(unitNo.equals("")) {
+			unitNom = 0;
+		}else {
+			unitNom = Integer.parseInt(unitNo);
+		}
 		int j = cpd.addAdd(street, streetNom, unitNom, pcode, city, prov, cont, cid);
 		System.out.println(j);
 		if (j == 1) {
@@ -389,7 +393,7 @@ public class Model {
 
 	/*
 	 * hard code the failed payments
-	 * */
+	 */
 	public Status failTheThirdPayment(int num) {
 		Status result = Status.PROCESSED;
 		if (num % 3 == 0) {
@@ -408,31 +412,34 @@ public class Model {
 		Status st = failTheThirdPayment(failedQuerryCounter);
 		System.out.println(failedQuerryCounter);
 		failedQuerryCounter++;
-		int poid = 0; 
+		int poid = 0;
 		System.out.println(st.toString());
-		if(st == Status.DENIED) {
-			if(pod.InsertIntoProcessedOrder(cust_id, email, st.toString(), cardno) == 1) {
+		if (st == Status.DENIED) {
+			if (pod.InsertIntoProcessedOrder(cust_id, email, st.toString(), cardno) == 1) {
 				result = "Sorry unable to process your Querry please call 1-800-500-200";
 				return result;
-			}else {
+			} else {
 				return "Server Error Please call tech Support!";
 			}
-		}else {
+		} else {
 			int ans = pod.InsertIntoProcessedOrder(cust_id, email, st.toString(), cardno);
-			if(ans == 1) {
+			if (ans == 1) {
 				poid = pod.getProcessID(email);
 				System.out.println("Array list size Model line 421 " + al.size());
-				for(int i = 0; i < al.size(); i++) {
-					int value = pod.insertInToPOItem(al.get(i).getProductID(), al.get(i).getBookTittle(), poid, al.get(i).getPrice());
-					System.out.println(al.get(i).getAddID() + " " + al.get(i).getAddCartID()  + " " + al.get(i).getProductID() + " " + al.get(i).getBookTittle() + " " +poid + " " + al.get(i).getPrice());
-					if(value == 0) {
+				for (int i = 0; i < al.size(); i++) {
+					int value = pod.insertInToPOItem(al.get(i).getProductID(), al.get(i).getBookTittle(), poid,
+							al.get(i).getPrice());
+					System.out.println(
+							al.get(i).getAddID() + " " + al.get(i).getAddCartID() + " " + al.get(i).getProductID() + " "
+									+ al.get(i).getBookTittle() + " " + poid + " " + al.get(i).getPrice());
+					if (value == 0) {
 						result = "sorry an error occured";
 						return result;
-					}else {
+					} else {
 						int val = pod.deleteFromCartItem(al.get(i).getAddID());
-						if(val == 1) {
+						if (val == 1) {
 							result = "success";
-						}else {
+						} else {
 							result = "sorry an error occured";
 							return result;
 						}
@@ -440,21 +447,45 @@ public class Model {
 				}
 			}
 		}
-		
+
 		return result;
 	}
-	
-	
+
 	/*
-	 * Validate the strings
-	 * */
+	 * Validate the strings for credit card on checkout page
+	 */
 	public boolean checkTheString(String value, String valueTwo, String valueThree, String valueFour) {
-		if(value.equals("") || valueTwo.equals("") || valueThree.equals("") || valueFour.equals("")) {
+		if (value.equals("") || valueTwo.equals("") || valueThree.equals("") || valueFour.equals("")) {
 			return false;
+		} else {
+			return true;
 		}
-		else {
+	}
+
+	/*
+	 * Validate the strings for address on the homeprof page
+	 */
+	public boolean checkTheString(String sName, String sNum, String postCode, String city, String state,
+			String cont) {
+		if (sName.equals("") || sName.equals("") || sNum.equals("") || postCode.equals("")
+				|| city.equals("") || state.equals("") || cont.equals("")) {
+			return false;
+		} else {
 			return true;
 		}
 	}
 	
+	
+	/*
+	 * check the strings for address form
+	 * */
+	public boolean checkTheString(String cNum, String cCsv, String cFncme, String cLname, String expDate) {
+		if (cNum.equals("") || cCsv.equals("") || cFncme.equals("") || cLname.equals("")
+				|| expDate.equals("")) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
 }

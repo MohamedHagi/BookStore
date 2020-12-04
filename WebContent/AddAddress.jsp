@@ -7,6 +7,7 @@
 <title>Information Form</title>
 </head>
 <body>
+	${Error} 
 	<form method="post" action="AddInfo">
 	<fieldset>
 		<legend>Enter Email</legend>
