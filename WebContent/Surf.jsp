@@ -22,11 +22,35 @@ Welcome to surfing!
 <option value="Science">Science</option>
 <option value="Fiction">Fiction</option>
 <option value="Engineering">Engineering</option>
-<option value="All">All Category</option>
+<option value="All" selected="${sess}">All Category</option>
 </select>
-<input type="text" name="search" id="search"/> <button id="srchBtn">Search</button> </form>
+<input type="text" name="search" id="search" value="${val}"/> <button id="srchBtn">Search</button> </form>
 <br />
+<br/>
+<form action="Profile" method="post">
+<button name="viewProfile"> Profile </button>
+</form>
+<br/>
+<form action="surfing" method="post">
+<button name="viewCart">CheckOut</button>
+</form>
+${fail} 
+<table>
+<tr>
+<th>Tittle</th>
+<th>Price</th>
+</tr>
+<c:forEach var="CartItem" items="${cartList}">
+<tr>
+<td>${CartItem.bookTittle}</td>
+<td>${CartItem.price}</td>
+</tr>
+</c:forEach>
+</table>
+<br/>
 ${Er}
+${succ}
+${fail}
 <br />
 <!-- use c:for each to fill the table -->
 <table>
@@ -48,8 +72,13 @@ ${Er}
     <td>${book.quantity}</td>
     <td><a href="./Details.jsp">View More</a></td>
     <td>
-    	<form action="#">
-    		<button>Add to cart</button>
+    	<form method="post" action="surfing" id="tableFrm">
+    		<input type="hidden" name="bid" value="${book.bid}"/>
+    		<input type="hidden" name="tittle" value="${book.title}" />
+    		<input type="hidden" name="price" value="${book.price}" />
+    		<input type="hidden" name="quantity" value="${book.quantity}" />
+    		<input type="hidden" name="category" value="${book.category}"/>
+    		<button name="addToCart">Add to cart</button>
     	</form>
     </td>
   </tr>

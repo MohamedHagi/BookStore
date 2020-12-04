@@ -1,17 +1,26 @@
 package Bean;
 
+import java.sql.Date;
+
 public class Review {
 	
 	private int rid;
-	private String bid;
 	private String review;
 	private String bname;
+	private Date date;
+	private int customID;
 	
-	public Review(int rid, String bid, String review, String bname) {
+	public Review() {
+		
+	}
+	
+	public Review(int rid, String review, String bname, Date date, int customID) {
+		super();
 		this.rid = rid;
-		this.bid = bid;
 		this.review = review;
 		this.bname = bname;
+		this.date = date;
+		this.customID = customID;
 	}
 
 	public int getRid() {
@@ -20,14 +29,6 @@ public class Review {
 
 	public void setRid(int rid) {
 		this.rid = rid;
-	}
-
-	public String getBid() {
-		return bid;
-	}
-
-	public void setBid(String bid) {
-		this.bid = bid;
 	}
 
 	public String getReview() {
@@ -44,6 +45,22 @@ public class Review {
 
 	public void setBname(String bname) {
 		this.bname = bname;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	public int getCustomID() {
+		return customID;
+	}
+
+	public void setCustomID(int customID) {
+		this.customID = customID;
 	}
 	
 }

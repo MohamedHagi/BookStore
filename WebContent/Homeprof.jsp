@@ -1,86 +1,50 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta charset="ISO-8859-1">
 <title>${profileName}</title>
-<style>
-.wrapper {
-	margin: 0 auto;
-}
-
-.wrapper ul {
-	list-style: none;
-	margin-top: 1%;
-}
-
-.wrapper ul li {
-	background: #262626;
-	width: 100px;
-	border: 1px solid #fff;
-	height: 45px;
-	line-height: 50px;
-	text-align: center;
-	float: left;
-	color: #fff;
-	font-size: 16px;
-	position: relative;
-	font-family: poppins;
-	text-transform: uppercase;
-	font-weight: bold;
-}
-
-.wrapper ul li:hover {
-	background: crimson;
-}
-
-.wrapper ul ul {
-	display: none;
-}
-
-.wrapper ul li:hover>ul {
-	display: block;
-}
-
-.wrapper ul ul ul {
-	margin-left: 170px;
-	top: 0;
-	position: absolute;
-}
-</style>
 </head>
 <body>
 	${profileName}
-	<br>
+	<br />
 	${fname}, ${lname} 
-	<br>
+	<br />
 	Date Joined: ${date}
-	<br>
+	<br />
 	<form method="get" action="AddInfo">
 		${add}
 	</form>
-	<br>
+	<br />
 	${stNo} ${stName} ${prov} ${cont}
-	<br>
+	<br />
 	${cardNo}  ${csv}  ${cardfName} ${cardlName} ${expdate} 
-	<form method="get" action="Profile" id="frm">
+	<form method="post" action="logout" id="frm">
 	<button name="btnLogout">Logout</button>
-	<br>
+	</form>
+	<br />
+	<form method="get" action="Profile" id="frm2">
 	<button name="cartBtn">View Cart</button>
-	<br>
+	<br />
 	<button name="surfBtn">Surf</button>
 	</form>
-	<label for="cart">Your cart:</label>
-	<div class="wrapper">
-		<ul>
-			<li>Cart
-				<!-- use C: foreach loop to genearte more items -->
-				<ul>
-					<li>Book1</li>
-				</ul>
-			</li>
-		</ul>
-	</div>
+	<label for="cart">cart (${size}) Total:(${tot}):</label>
+	
+<table>
+  <tr>
+    <th>Tittle</th>
+    <th>Price</th>
+  </tr>
+  <c:forEach var="book" items="${la}">
+  <tr>
+    <td>${book.price}</td>
+    <td>${book.bookTittle}</td>
+  </tr>
+  </c:forEach>
+</table>
+	
 </body>
 </html>

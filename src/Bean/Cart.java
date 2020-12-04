@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Cart {
 	
 	private int custID;
-	ArrayList<Book> b;
+	ArrayList<CartItem> b;
 	
 	public Cart() {
 		
@@ -13,7 +13,7 @@ public class Cart {
 	
 	public Cart(int custID) {
 		this.custID = custID;
-		this.b = new ArrayList<Book>();
+		this.b = new ArrayList<CartItem>();
 	}
 
 
@@ -27,27 +27,33 @@ public class Cart {
 	}
 
 
-	public ArrayList<Book> getB() {
-		return b;
-	}
-
-
-	public void setB(ArrayList<Book> b) {
+	public void setB(ArrayList<CartItem> b) {
 		this.b = b;
 	}
 
 
-	public ArrayList<Book> getList() {
+	public ArrayList<CartItem> getList() {
 		return b;
 	}
-
-	public void addFromSession(ArrayList<Book> blist) {
-		for(Book book: blist) {
-			this.b.add(book);
+	
+	public boolean addanIteaminASession(CartItem ci) {
+		boolean result = false;
+		int size_one = 0;
+		this.b.add(ci);
+		int size_two = this.b.size();
+		if(size_two > size_one) {
+			return true;
+		}
+		return result;
+	}
+	
+	public void addFromSession(ArrayList<CartItem> cilist) {
+		for(CartItem ci: cilist) {
+			this.b.add(ci);
 		}
 	}
 	
-	public void add(Book b) {
+	public void add(CartItem b) {
 		this.b.add(b);
 	}
 	
@@ -55,7 +61,7 @@ public class Cart {
 		return this.b.size();
 	}
 	
-	public void remove(Book b) {
+	public void remove(CartItem b) {
 		if(this.b.size() == 0) {
 			throw new IllegalArgumentException();
 		}else {
