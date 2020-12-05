@@ -105,11 +105,7 @@
                   </div>
                    <div class="col-lg-6 form-group">
                     <label class="text-small text-uppercase" for="country">Country</label>
-
-                    <input class="form-control form-control-lg" id="country" name="country" type="text" placeholder="Enter Postal Code">
-
                     <select class="selectpicker country" id="country" name = "country" data-width="fit" data-style="form-control form-control-lg" data-title="Select your country"></select>
-
                   </div>
                   <div class="col-lg-6 form-group">
                     <label class="text-small text-uppercase" for="state">State/County</label>
@@ -119,18 +115,12 @@
                     <label class="text-small text-uppercase" for="city">Town/City</label>
                     <input class="form-control form-control-lg" id="city" name="city" type="text" placeholder="e.g. Toronto">
                   </div>
-                  
-                    <h2 class="h5 text-uppercase mb-4">Creditcard details</h2>
-                    
-                    
-                     <div class="row">
                   <br>
                    <h2 class="h5 text-uppercase mb-4">Creditcard details</h2>
                   <div class="col-lg-12 form-group">
                     <label class="text-small text-uppercase" for="cNumber">Credit Card Number</label>
                     <input class="form-control form-control-lg" id="cNumber" name="cNumber" type="text" placeholder="e.g. 1111-1111-1111-1111">
                   </div>
-
                   <div class="col-lg-12 form-group">
                     <label class="text-small text-uppercase" for="fname">First Name</label>
                     <input class="form-control form-control-lg" id="fname" name="fname" type="text" placeholder="e.g. John">
@@ -143,27 +133,16 @@
                     <label class="text-small text-uppercase" for="csv">CVV</label>
                     <input class="form-control form-control-lg" id="csv" name="csv" type="text" placeholder="e.g. 000">
                   </div>
-                  <div class="col-lg-6 form-group">
-                    <label class="text-small text-uppercase" for="csv">CVV</label>
-                    <input class="form-control form-control-lg" id="csv" name="csv" type="text" placeholder="Enter your 3 digit CSV">
-                  </div>
-                  <div class="col-lg-6 form-group">
-                    <label class="text-small text-uppercase" for="expdate">Expiry Date</label>
+                    <div class="col-lg-12 form-group">
+                    <label class="text-small text-uppercase" for="expdate">Exipry Date</label>
                     <input class="form-control form-control-lg" id="expdate" name="expdate" type="date" placeholder="Enter Expiry Date">
                   </div>
-                  		<button name="ccinfo" id="btn btn-outline-dark">Submit</button>
-                  </div>
-                    
-                  
+                  <button name= "ccinfo" class ="btn btn-outline-dark"> Submit</button>
                   </div>
                   </form>
                   </div>
                   </div>
                   </section>
-<<<<<<< HEAD
-                    
-=======
->>>>>>> e42fa23931fbab0e0c6d4043febdb08c135adf4d
                   </div>
                   </div>
                   </section>
