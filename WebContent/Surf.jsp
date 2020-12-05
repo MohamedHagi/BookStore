@@ -178,9 +178,10 @@
 			<%--   </c:forEach> --%>
 			<!-- </table> -->
 
-
+<table>
+<tr>
 			<c:forEach var="book" items="${hash}">
-
+<td>
 				<div class="col-xl-3 col-lg-4 col-sm-6">
 					<div class="product text-center">
 						<div class="position-relative mb-3">
@@ -197,16 +198,6 @@
 												type="hidden" name="category" value="${book.category}" />
 											<button name="addToCart" id="btn btn-sm btn-dark">Add to cart</button>
 										</form></li>
-										<li>
-											<form method="post" action="surfing" id="tableFrm">
-											<input type="hidden" name="bid" value="${book.bid}" /> <input
-												type="hidden" name="tittle" value="${book.title}" /> <input
-												type="hidden" name="price" value="${book.price}" /> <input
-												type="hidden" name="quantity" value="${book.quantity}" /> <input
-												type="hidden" name="category" value="${book.category}" />
-											<button name="details" id="btn btn-sm btn-dark">details</button>
-										</form>
-										</li>
 								</ul>
 							</div>
 						</div>
@@ -216,8 +207,19 @@
 						<p class="small text-muted">${book.price}</p>
 					</div>
 				</div>
+</td>
 
 			</c:forEach>
+</tr>
+
+
+</table>
+
+
+
+
+
+
 
 
 		</div>
