@@ -31,15 +31,23 @@ ${productID} ${bookTittle} ${price} ${categ}
 ${success}
 <br/>
 ${login}
-<form action="surfing" method="get">
+<form action="surfing" method="post">
 <label for="textArea">Review</label>
+<br/>
 <textarea id="textArea" name="textArea" rows="4" cols="50">
 Max size 150 words!
   </textarea>
   <br/>
+  <input type="hidden" name="bid" value="${productID}" />
   <input type="hidden" name="hidVal" value="${bookTittle}"/>
+  <input type="hidden" name="price" value="${price}" /> 
+  <input type="hidden" name="quantity" value="${book.quantity}" />
+  <input type="hidden" name="category" value="${categ}" />
   <button name="reviewInsert">Submit</button>
 </form>
+
+ 
+												 
 
 
 </body>

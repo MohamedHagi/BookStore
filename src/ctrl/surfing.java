@@ -123,9 +123,16 @@ public class surfing extends HttpServlet {
 		}
 		
 		if(request.getParameter("reviewInsert") != null) {
+			String price = request.getParameter("price");
+			String productID = request.getParameter("bid");
+			String categ = request.getParameter("category");
+			String comment = request.getParameter("textArea");
+			String bookTittle = request.getParameter("hidVal");
+			request.setAttribute("price", price);
+			request.setAttribute("productID", productID);
+			request.setAttribute("bookTittle", bookTittle);
+			request.setAttribute("categ", categ);
 			if(ID != null){
-				String comment = request.getParameter("textArea");
-				String bookTittle = request.getParameter("hidVal");
 				boolean result = m.insertIntoReview(comment, ID, bookTittle);
 				if(result) {
 					request.setAttribute("success", "Review has been added");
