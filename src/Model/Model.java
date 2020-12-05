@@ -256,10 +256,11 @@ public class Model {
 	 */
 	public boolean addCustInfoInAddTable(String street, String streetNo, String unitNo, int cid, String pcode,
 			String city, String prov, String cont) {
+		System.out.println("From model " + street + " " +streetNo + " " +unitNo + " " +cid + " " +pcode + " " +city + " " +prov + " " + cont);
 		boolean result = false;
 		int streetNom = Integer.parseInt(streetNo);
-		int unitNom = 0;
-		if(unitNo.equals("")) {
+		int unitNom = Integer.parseInt(unitNo);
+		if(unitNo == null) {
 			unitNom = 0;
 		}else {
 			unitNom = Integer.parseInt(unitNo);
