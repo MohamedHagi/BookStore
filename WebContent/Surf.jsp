@@ -57,7 +57,7 @@
 								href="/BookStore/Main.jsp">Home</a>
 							</li>
 							<li class="nav-item">
-								<!-- Link--> <a class="nav-link" href="/BookStore/Surf.jsp">Shop</a>
+							 <a class="nav-link" href="/BookStore/adminLogin.jsp">Admin Login</a>
 							</li>
 
 						</ul>
