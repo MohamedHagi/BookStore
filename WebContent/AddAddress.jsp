@@ -81,7 +81,7 @@
           <h2 class="h5 text-uppercase mb-4">Address details</h2>
           <div class="row">
             <div class="col-lg-8">
-              <form action="#">
+              <form action="AddInfo" method="post">
                 <div class="row">
                   <div class="col-lg-6 form-group">
                     <label class="text-small text-uppercase" for="email">Email address</label>
@@ -105,57 +105,44 @@
                   </div>
                    <div class="col-lg-6 form-group">
                     <label class="text-small text-uppercase" for="country">Country</label>
-                    <select class="selectpicker country" id="country" data-width="fit" data-style="form-control form-control-lg" data-title="Select your country"></select>
+                    <select class="selectpicker country" id="country" name = "country" data-width="fit" data-style="form-control form-control-lg" data-title="Select your country"></select>
                   </div>
                   <div class="col-lg-6 form-group">
                     <label class="text-small text-uppercase" for="state">State/County</label>
-                    <input class="form-control form-control-lg" id="state" type="text" placeholder="e.g. Ontario">
+                    <input class="form-control form-control-lg" id="state" name="state" type="text" placeholder="e.g. Ontario">
                   </div>
                   <div class="col-lg-12 form-group">
                     <label class="text-small text-uppercase" for="city">Town/City</label>
-                    <input class="form-control form-control-lg" id="city" type="text" placeholder="e.g. Toronto">
+                    <input class="form-control form-control-lg" id="city" name="city" type="text" placeholder="e.g. Toronto">
                   </div>
-                  
-                  
+                  <br>
+                   <h2 class="h5 text-uppercase mb-4">Creditcard details</h2>
+                  <div class="col-lg-12 form-group">
+                    <label class="text-small text-uppercase" for="cNumber">Credit Card Number</label>
+                    <input class="form-control form-control-lg" id="cNumber" name="cNumber" type="text" placeholder="e.g. 1111-1111-1111-1111">
+                  </div>
+                  <div class="col-lg-12 form-group">
+                    <label class="text-small text-uppercase" for="fname">First Name</label>
+                    <input class="form-control form-control-lg" id="fname" name="fname" type="text" placeholder="e.g. John">
+                  </div>
+                  <div class="col-lg-12 form-group">
+                    <label class="text-small text-uppercase" for="lname">Last Name</label>
+                    <input class="form-control form-control-lg" id="lname" name="lname" type="text" placeholder="e.g. Jordan">
+                  </div>
+                  <div class="col-lg-12 form-group">
+                    <label class="text-small text-uppercase" for="csv">CVV</label>
+                    <input class="form-control form-control-lg" id="csv" name="csv" type="text" placeholder="e.g. 000">
+                  </div>
+                    <div class="col-lg-12 form-group">
+                    <label class="text-small text-uppercase" for="expdate">Exipry Date</label>
+                    <input class="form-control form-control-lg" id="expdate" name="expdate" type="date" placeholder="Enter Expiry Date">
+                  </div>
+                  <button name= "ccinfo" class ="btn btn-outline-dark"> Submit</button>
                   </div>
                   </form>
                   </div>
                   </div>
                   </section>
-                  
-                  <section class="py-5">
-      
-          <h2 class="h5 text-uppercase mb-4">Creditcard details</h2>
-          <div class="row">
-            <div class="col-lg-8">
-              <form action="#">
-                <div class="row">
-                  <div class="col-lg-12 form-group">
-                    <label class="text-small text-uppercase" for="fname">First Name</label>
-                    <input class="form-control form-control-lg" id="fname" name="fname" type="text" placeholder="Enter your First Name">
-                  </div>
-                 <div class="col-lg-12 form-group">
-                    <label class="text-small text-uppercase" for="lname">Last Name</label>
-                    <input class="form-control form-control-lg" id="lname" name="lname" type="text" placeholder="Enter your Last Name">
-                  </div>
-                  <div class="col-lg-12 form-group">
-                    <label class="text-small text-uppercase" for="cNumber">Card Number</label>
-                    <input class="form-control form-control-lg" id="cNumber" name="cNumber" type="text" placeholder="Your Creditcard number">
-                  </div>
-                  <div class="col-lg-6 form-group">
-                    <label class="text-small text-uppercase" for="csv">CSV</label>
-                    <input class="form-control form-control-lg" id="csv" name="csv" type="text" placeholder="Enter your 3 digit CSV">
-                  </div>
-                  <div class="col-lg-6 form-group">
-                    <label class="text-small text-uppercase" for="expdate">Expiry Date</label>
-                    <input class="form-control form-control-lg" id="expdate" name="expdate" type="date" placeholder="Enter Expiry Date">
-                  </div>
-
-                  </div>
-                  </form>
-                  </div>
-                  </div>
-                  </section>   
                   </div>
                   </div>
                   </section>
