@@ -53,12 +53,11 @@
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 						<ul class="navbar-nav mr-auto">
 							<li class="nav-item">
-								<!-- Link-->
-								<a class="nav-link active" href="/BookStore/Main.jsp">Home</a>
+								<!-- Link--> <a class="nav-link active"
+								href="/BookStore/Main.jsp">Home</a>
 							</li>
 							<li class="nav-item">
-								<!-- Link-->
-								<a class="nav-link" href="/BookStore/Surf.jsp">Shop</a>
+								<!-- Link--> <a class="nav-link" href="/BookStore/Surf.jsp">Shop</a>
 							</li>
 
 						</ul>
@@ -177,45 +176,62 @@
 			<!--   </tr> -->
 			<%--   </c:forEach> --%>
 			<!-- </table> -->
-
-<table>
-<tr>
-			<c:forEach var="book" items="${hash}">
-<td>
-				<div class="col-xl-3 col-lg-4 col-sm-6">
-					<div class="product text-center">
-						<div class="position-relative mb-3">
-							<div class="badge text-white badge-"></div>
-							<img class="img-fluid w-100" src="img/product-1.jpg" alt="...">
-							<div class="product-overlay">
-								<ul class="mb-0 list-inline">
-									<li class="list-inline-item m-0 p-0"><form method="post"
-											action="surfing" id="tableFrm">
-											<input type="hidden" name="bid" value="${book.bid}" /> <input
-												type="hidden" name="tittle" value="${book.title}" /> <input
-												type="hidden" name="price" value="${book.price}" /> <input
-												type="hidden" name="quantity" value="${book.quantity}" /> <input
-												type="hidden" name="category" value="${book.category}" />
-											<button name="addToCart" id="btn btn-sm btn-dark">Add to cart</button>
-										</form></li>
-								</ul>
+			<c:set var="count" value="0" scope="page" />
+			<table>
+				<tr>
+					<c:forEach var="book" items="${hash}" varStatus="status">
+						<c:if test="${count == 3}">
+							<tr>
+							</tr>
+							<c:set var="count" value="${count - 3}" scope="page" />
+						</c:if>
+						<td>
+							<div class="col-xl-3 col-lg-4 col-sm-6">
+								<div class="product text-center">
+									<div class="position-relative mb-3">
+										<div class="badge text-white badge-"></div>
+										<img class="img-fluid w-100" src="img/product-1.jpg" alt="...">
+										<div class="product-overlay">
+											<ul class="mb-0 list-inline">
+												<li class="list-inline-item m-0 p-0"><form
+														method="post" action="surfing" id="tableFrm">
+														<input type="hidden" name="bid" value="${book.bid}" /> <input
+															type="hidden" name="tittle" value="${book.title}" /> <input
+															type="hidden" name="price" value="${book.price}" /> <input
+															type="hidden" name="quantity" value="${book.quantity}" />
+														<input type="hidden" name="category"
+															value="${book.category}" />
+														<button name="addToCart" id="btn btn-sm btn-dark">Add
+															to cart</button>
+													</form></li>
+												<li>
+														<form action="surfing" id="tableFrm">
+														<input type="hidden" name="bid" value="${book.bid}" /> <input
+															type="hidden" name="tittle" value="${book.title}" /> <input
+															type="hidden" name="price" value="${book.price}" /> <input
+															type="hidden" name="quantity" value="${book.quantity}" />
+														<input type="hidden" name="category"
+															value="${book.category}" />
+													<button name="details">Details</button>
+														</form>
+												</li>
+											</ul>
+										</div>
+									</div>
+									<h6>
+										<a class="reset-anchor" href="detail.html">${book.title} </a>
+									</h6>
+									<p class="small text-muted">${book.price}</p>
+								</div>
 							</div>
-						</div>
-						<h6>
-							<a class="reset-anchor" href="detail.html">${book.title}</a>
-						</h6>
-						<p class="small text-muted">${book.price}</p>
-					</div>
-				</div>
-</td>
+						<td>
+							<%-- 				<c:if test="${count == 3}">  --%> <!-- 					</tr> --> <%-- 					<c:set var="count" value="${count - 3}" scope="page"/> --%>
+							<%-- 				</c:if> --%> <c:set var="count" value="${count + 1}"
+								scope="page" />
+					</c:forEach>
+				</tr>
 
-			</c:forEach>
-</tr>
-
-
-</table>
-
-
+			</table>
 
 
 
