@@ -243,7 +243,7 @@
 			integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
 			crossorigin="anonymous">
 	</div>
-	=======
+
 	<!-- use c:for each to fill the table
 <table>
   <tr>
