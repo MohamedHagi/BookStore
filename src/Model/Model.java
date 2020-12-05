@@ -11,6 +11,7 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.transform.stream.StreamResult;
 
+import Bean.Admin;
 import Bean.Book;
 import Bean.Cart;
 import Bean.CartItem;
@@ -18,9 +19,12 @@ import Bean.CreditCard;
 import Bean.Customers;
 import Bean.ListWrapperBook;
 import Bean.LoginType;
+import Bean.PurchaseOrder;
 import Bean.Review;
 import Bean.ShippingCountryInfo;
 import Bean.Status;
+import Bean.TopTen;
+import DAO.AdminDAO;
 import DAO.BookDAO;
 import DAO.CartDAO;
 import DAO.CustProfileDAO;
@@ -38,6 +42,7 @@ public class Model {
 	private ShippingDAO sd;
 	private ReviewDAO rd;
 	private ProcessOrderDAO pod;
+	private AdminDAO adminDAO;
 	private static int failedQuerryCounter = 1;
 	public static Model ModelInstance;
 
@@ -55,6 +60,7 @@ public class Model {
 			ModelInstance.sd = new ShippingDAO();
 			ModelInstance.rd = new ReviewDAO();
 			ModelInstance.pod = new ProcessOrderDAO();
+			ModelInstance.adminDAO = new AdminDAO();
 		}
 		return ModelInstance;
 	}
@@ -347,12 +353,30 @@ public class Model {
 	/*
 	 * Get the review for the book
 	 */
-	public Review getTheReview(String tittle) {
-		Review result = new Review();
+	public ArrayList<Review> getTheReview(String tittle) {
+		ArrayList<Review> result = new ArrayList<Review>();
 		result = rd.getTheReview(tittle);
 		return result;
 	}
 
+	/*
+	 * Insert into review
+	 * */
+	public boolean insertIntoReview(String comment, String custID, String bookTittle) {
+		boolean result = false;
+		long milis = System.currentTimeMillis();
+		java.sql.Date date = new java.sql.Date(milis);
+		if(comment.length() > 149) {
+			return false;
+		}
+		int k = rd.InsertReviewIntoDB(comment, custID, bookTittle, date);
+		if(k == 1) {
+			return true;
+		}
+		return result;
+	}
+	
+	
 	/*
 	 * returns an xml string use it in the rest file
 	 */
@@ -409,20 +433,22 @@ public class Model {
 	public String PurchaseOrderQueries(String email, String cardno, ArrayList<CartItem> al) {
 		String result = "";
 		int cust_id = ld.custcid(email);
+		long milis = System.currentTimeMillis();
+		java.sql.Date date = new java.sql.Date(milis); 
 		Status st = failTheThirdPayment(failedQuerryCounter);
 		System.out.println(failedQuerryCounter);
 		failedQuerryCounter++;
 		int poid = 0;
 		System.out.println(st.toString());
 		if (st == Status.DENIED) {
-			if (pod.InsertIntoProcessedOrder(cust_id, email, st.toString(), cardno) == 1) {
+			if (pod.InsertIntoProcessedOrder(cust_id, email, st.toString(), cardno, date) == 1) {
 				result = "Sorry unable to process your Querry please call 1-800-500-200";
 				return result;
 			} else {
 				return "Server Error Please call tech Support!";
 			}
 		} else {
-			int ans = pod.InsertIntoProcessedOrder(cust_id, email, st.toString(), cardno);
+			int ans = pod.InsertIntoProcessedOrder(cust_id, email, st.toString(), cardno, date);
 			if (ans == 1) {
 				poid = pod.getProcessID(email);
 				System.out.println("Array list size Model line 421 " + al.size());
@@ -487,5 +513,67 @@ public class Model {
 			return true;
 		}
 	}
+	
+	
+	/*
+	 * Send data to the analytics
+	 * */
+	public ArrayList<TopTen> getTopTenInfo(){
+		return adminDAO.getTopTen();
+	}
 
+	/*
+	 * Admin Login Confirmation
+	 * */
+	public boolean getValidationOfAdminInput(String email, String lname) {
+		boolean result = true;
+		Admin a = new Admin();
+		try {
+			if(email.equals("") || lname.equals("")) {
+				return false;
+			}
+			a = adminDAO.getAdmin(email, lname);
+			if(a.getEmail().equals(email) && a.getLname().equals(lname)) {
+				return true;
+			}
+		}catch(NullPointerException e) {
+			return false;
+		}
+		return result;
+	}
+	
+	/*
+	 * prints customer querry
+	 * */
+	
+	public PurchaseOrder getTheOrderQuerry(String poid) {
+		int pid = Integer.parseInt(poid);
+		PurchaseOrder po = new PurchaseOrder();
+		try {
+			po = pod.getTheOrderQuerry(pid);
+		}catch(NullPointerException e) {
+			return null;
+		}
+		return po;
+	}
+	
+	/*
+	 * get the books sold each month
+	 * */
+	public ArrayList<Book> getTheBooksSoldEachMonth(String month, String year){
+		if(month.equals("") || year.equals("")) {
+			return null;
+		}
+		int m = Integer.parseInt(month);
+		int y = Integer.parseInt(year);
+		ArrayList<Book> result = new ArrayList<Book>();
+		try {
+			result = adminDAO.getTheMonthlyBooks(m, y);
+			return result;
+		}catch(NullPointerException e) {
+			return null;
+		}
+	}
+	
+	
 }

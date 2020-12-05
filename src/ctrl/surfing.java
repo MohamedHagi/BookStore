@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import Bean.Book;
 import Bean.Cart;
 import Bean.CartItem;
+import Bean.Review;
 import Bean.ShippingCountryInfo;
 import Model.Model;
 
@@ -90,6 +91,58 @@ public class surfing extends HttpServlet {
 			}
 		}
 
+		if(request.getParameter("details") != null) {
+			String price = request.getParameter("price");
+			String productID = request.getParameter("bid");
+			String bookTittle = request.getParameter("tittle");
+			String categ = request.getParameter("category");
+			request.setAttribute("price", price);
+			request.setAttribute("productID", productID);
+			request.setAttribute("bookTittle", bookTittle);
+			request.setAttribute("categ", categ);
+			ArrayList<Review> r = m.getTheReview(bookTittle);
+			if(r.size() == 0) {
+				request.setAttribute("noReview", "No reviews for this product yet!");
+				try {
+					String path = "./Details.jsp";
+					request.getRequestDispatcher(path).forward(request, response);
+					return;
+				}catch(Exception e) {
+					e.printStackTrace();
+				}
+			}else {
+				request.setAttribute("review", r);
+				try {
+					String path = "./Details.jsp";
+					request.getRequestDispatcher(path).forward(request, response);
+					return;
+				}catch(Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		if(request.getParameter("reviewInsert") != null) {
+			if(ID != null){
+				String comment = request.getParameter("textArea");
+				String bookTittle = request.getParameter("hidVal");
+				boolean result = m.insertIntoReview(comment, ID, bookTittle);
+				if(result) {
+					request.setAttribute("success", "Review has been added");
+				}else {
+					request.setAttribute("success", "Sorry an error occured");
+				}
+				String path = "./Details.jsp";
+				request.getRequestDispatcher(path).forward(request, response);
+				return;
+			}else {
+				request.setAttribute("login", "please Login first only logged in users can write a review");
+				String path = "./Details.jsp";
+				request.getRequestDispatcher(path).forward(request, response);
+				return;
+			}
+		}
+		
 		try {
 			if (request.getParameter("addToCart") != null) {
 				System.out.println(ID);

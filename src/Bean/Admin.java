@@ -9,6 +9,10 @@ public class Admin {
 	String email;
 	Address add;
 	
+	public Admin() {
+		
+	}
+
 	public Admin(String aID, String fname, String lname, String email, Address add) {
 		this.aID = aID;
 		this.fname = fname;

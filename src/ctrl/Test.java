@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import Bean.Recipt;
 import DAO.ProcessOrderDAO;
 import DAO.ReciptDAO;
+import DAO.ReviewDAO;
 import DAO.ShippingDAO;
 
 
@@ -35,13 +36,11 @@ public class Test extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		ReciptDAO rd = new ReciptDAO();
-		Recipt r = new Recipt();
+		ReviewDAO rd = new ReviewDAO();
 		long milis = System.currentTimeMillis();
 		java.sql.Date date = new java.sql.Date(milis);
-		r.setCust_id(10);
-		r.setDate(date);
-		r.setAddress(100);
+		int result = rd.InsertReviewIntoDB("Very bad", "mathewhatden@gmail.com", "Pathology", date);
+		System.out.println(result);
 	}
 
 	/**

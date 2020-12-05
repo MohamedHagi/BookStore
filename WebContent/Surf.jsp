@@ -197,6 +197,16 @@
 												type="hidden" name="category" value="${book.category}" />
 											<button name="addToCart" id="btn btn-sm btn-dark">Add to cart</button>
 										</form></li>
+										<li>
+											<form method="post" action="surfing" id="tableFrm">
+											<input type="hidden" name="bid" value="${book.bid}" /> <input
+												type="hidden" name="tittle" value="${book.title}" /> <input
+												type="hidden" name="price" value="${book.price}" /> <input
+												type="hidden" name="quantity" value="${book.quantity}" /> <input
+												type="hidden" name="category" value="${book.category}" />
+											<button name="details" id="btn btn-sm btn-dark">details</button>
+										</form>
+										</li>
 								</ul>
 							</div>
 						</div>

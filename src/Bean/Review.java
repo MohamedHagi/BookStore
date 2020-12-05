@@ -8,13 +8,13 @@ public class Review {
 	private String review;
 	private String bname;
 	private Date date;
-	private int customID;
+	private String customID;
 	
 	public Review() {
 		
 	}
 	
-	public Review(int rid, String review, String bname, Date date, int customID) {
+	public Review(int rid, String review, String bname, Date date, String customID) {
 		super();
 		this.rid = rid;
 		this.review = review;
@@ -55,11 +55,11 @@ public class Review {
 		this.date = date;
 	}
 
-	public int getCustomID() {
+	public String getCustomID() {
 		return customID;
 	}
 
-	public void setCustomID(int customID) {
+	public void setCustomID(String customID) {
 		this.customID = customID;
 	}
 	

@@ -1,6 +1,7 @@
 package DAO;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,6 +9,8 @@ import java.sql.SQLException;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+
+import Bean.PurchaseOrder;
 
 public class ProcessOrderDAO {
 	
@@ -22,16 +25,17 @@ public class ProcessOrderDAO {
 		}
 	}
 	
-	public int InsertIntoProcessedOrder(int custID, String email, String status, String cardno) {
+	public int InsertIntoProcessedOrder(int custID, String email, String status, String cardno, Date date) {
 		int result = 0; 
 		try {
 			Connection c = ds.getConnection();
-			String sql = "INSERT INTO purchaseorder (cust_ID, email, status, card) VALUES (?, ?, ?, ?);";
+			String sql = "INSERT INTO purchaseorder (cust_ID, email, status, card, Date) VALUES (?, ?, ?, ?, ?);";
 			PreparedStatement ps = c.prepareStatement(sql);
 			ps.setInt(1, custID);
 			ps.setString(2, email);
 			ps.setString(3, status);
 			ps.setString(4, cardno);
+			ps.setDate(5, date);
 			result = ps.executeUpdate();
 			ps.close();
 			c.close();
@@ -100,5 +104,29 @@ public class ProcessOrderDAO {
 			e.printStackTrace();
 		}
 		return result;
+	}
+	
+	public PurchaseOrder getTheOrderQuerry(int poid) {
+		PurchaseOrder po = new PurchaseOrder();
+		try{
+			Connection c = ds.getConnection();
+			String sql = "select cust_ID, email, status, card from purchaseorder where poid=" + poid + ";";
+			PreparedStatement ps = c.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				po.setcID(rs.getInt("cust_ID"));
+				po.setEmail(rs.getString("email"));
+				po.setStat(rs.getString("status"));
+				po.setCard(rs.getString("card"));
+			}
+			rs.close();
+			ps.close();
+			c.close();
+			return po;
+		
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return po;
 	}
 }

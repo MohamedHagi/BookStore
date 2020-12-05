@@ -1,9 +1,11 @@
 package DAO;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -24,20 +26,22 @@ public class ReviewDAO {
 		} 
 	}
 	
-	public Review getTheReview(String tittle) {
-		Review result = new Review();
+	public ArrayList<Review> getTheReview(String tittle) {
+		ArrayList<Review> result = new ArrayList<Review>();
 		try {
 			Connection c = ds.getConnection();
-			String sql = "select reviewid, comments, customID, bookTittle, date from review "
+			String sql = "select reviewid, comments, email, bookTittle, date from review "
 					+ "where bookTittle like '%"+ tittle +"%';";
 			PreparedStatement ps = c.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
-				result.setRid(rs.getInt("reviewid"));
-				result.setReview(rs.getString("comments"));
-				result.setCustomID(rs.getInt("customID"));
-				result.setBname(rs.getString("bookTittle"));
-				result.setDate(rs.getDate("date"));
+				Review r = new Review();
+				r.setRid(rs.getInt("reviewid"));
+				r.setReview(rs.getString("comments"));
+				r.setCustomID(rs.getString("email"));
+				r.setBname(rs.getString("bookTittle"));
+				r.setDate(rs.getDate("date"));
+				result.add(r);
 			}
 			
 			rs.close();
@@ -49,4 +53,28 @@ public class ReviewDAO {
 		}
 		return result;
 	} 
+	
+	
+	public int InsertReviewIntoDB(String comment, String custID, String bookTittle, Date date) {
+		int result = 0;
+		try {
+			Connection c = ds.getConnection();
+			String sql = "INSERT INTO review (comments, bookTittle, date, email) VALUES (?, ?, ?, ?);";
+			PreparedStatement ps = c.prepareStatement(sql);
+			ps.setString(1, comment);
+			ps.setString(2, bookTittle);
+			ps.setDate(3, date);
+			ps.setString(4, custID);
+			result = ps.executeUpdate();
+			
+			ps.close();
+			c.close();
+			return result;
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+		
+	}
 }

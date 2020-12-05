@@ -1,27 +1,57 @@
 package Bean;
 
+import java.sql.Date;
+
 public class PurchaseOrder {
 	
 	private int poId;
 	private int cID;
-	private int reciptID;
 	private int shipID;
 	private int cartID;
 	private String email;
 	private Status st;
+	private String stat;
+	private String card;
+	private Date date;
 	
 	public PurchaseOrder() {
 		
 	}
 	
-	public PurchaseOrder(int poId, int cID, String email, int reciptID, int shipID, Status st, int cartID) {
+	public PurchaseOrder(int poId, Date date, String card, String stat, int cID, String email, int shipID, Status st, int cartID) {
 		this.poId = poId;
 		this.cID = cID;
 		this.email = email;
-		this.reciptID = reciptID;
 		this.shipID = shipID;
 		this.st = st;
 		this.cartID = cartID;
+		this.stat = stat;
+		this.card = card;
+		this.date = date;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	public String getCard() {
+		return card;
+	}
+
+	public void setCard(String card) {
+		this.card = card;
+	}
+
+	public String getStat() {
+		return stat;
+	}
+
+	public void setStat(String stat) {
+		this.stat = stat;
 	}
 
 	public int getCartID() {
@@ -54,14 +84,6 @@ public class PurchaseOrder {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public int getReciptID() {
-		return reciptID;
-	}
-
-	public void setReciptID(int reciptID) {
-		this.reciptID = reciptID;
 	}
 
 	public int getShipID() {
