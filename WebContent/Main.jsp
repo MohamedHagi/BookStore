@@ -39,10 +39,10 @@
  <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                  <!-- Link--><a class="nav-link active" href="/BookStore/Main.jsp">Home</a>
+                 <a class="nav-link active" href="/BookStore/Main.jsp">Home</a>
                 </li>
                 <li class="nav-item">
-                  <!-- Link--><a class="nav-link" href="/BookStore/Surf.jsp">Shop</a>
+                  <a class="nav-link" href="/BookStore/Surf.jsp">Shop</a>
                 </li>
                 
                 </ul>

@@ -61,9 +61,7 @@
      
               </ul>
               </div>
-   
-                       
-                
+        
                
  </nav>
 
@@ -71,7 +69,7 @@
 </header> 
 
   <div class="container">
-        <!-- HERO SECTION-->
+
         <section class="py-5 bg-light">
           <div class="container">
             <div class="row px-4 px-lg-5 py-lg-4 align-items-center">
