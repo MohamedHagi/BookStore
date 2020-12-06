@@ -410,7 +410,8 @@ public class Profile extends HttpServlet {
 				System.out.println("gets here");
 				String ID = (String) request.getSession().getAttribute("ID");
 				CreditCard cc = m.PrintcustCreditCardInfo(ID);
-				boolean answer = m.chekExpiry(cc.getExpirydate());
+				boolean answer = m.chekExpiry(cc.getExpirydate());		
+				
 				System.out.println("checks the expiry date " + answer);
 				ArrayList<CartItem> al = m.GetCartItems(ID);
 				if (answer && al.size() > 0) {

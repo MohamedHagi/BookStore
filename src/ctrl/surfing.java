@@ -262,7 +262,65 @@ public class surfing extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		
+		if(request.getParameter("btnForCart") != null) {
+			
+			
+			if(request.getSession().getAttribute("ID") != null){
+				Customers c = m.PrintcustInfo(ID);
+				int count = 0;
+				if(c.getAdd() == null) {
+					request.setAttribute("count", count);
+					request.setAttribute("add", " <a href=\"/BookStore/AddAddress.jsp\">Add Address</a>");
+				}
+				ArrayList<CartItem> al = m.GetCartItems(ID);
+				request.setAttribute("size", al.size());
+				request.setAttribute("la", al);
+				if (al.size() > 0) {
+					ShippingCountryInfo sci = new ShippingCountryInfo();
+					sci = m.getDilieveryPrices(ID);
+					double total = m.GetCartTotal(ID);
+					request.setAttribute("tax", sci.getTaxRate());
+					request.setAttribute("tar", sci.getTariffs());
+					request.setAttribute("tot", total);
+					request.setAttribute("shipping", sci.getCarrierFlatRate());
+					request.setAttribute("orderTot",
+							 m.returnCartTotal(total, sci.getTaxRate(), sci.getTariffs(), sci.getCarrierFlatRate()));
+					if(c.getAdd() != null) {
+						count = 1;
+						request.setAttribute("count", count);
+						request.setAttribute("conf", "Confirm Address: ");
+						request.setAttribute("stNum", "Street Number: " + c.getAdd().getStreetNo());
+						request.setAttribute("unitNo", "Unit Number: " + c.getAdd().getUnitNo());
+						request.setAttribute("stName", "Street Name: " + c.getAdd().getStreet());
+						request.setAttribute("pcode", "Postal Code: " + c.getAdd().getPcode());
+						request.setAttribute("city", "City: "  + c.getAdd().getCity());
+						request.setAttribute("state", "State: " + c.getAdd().getProvince());
+						request.setAttribute("cont", "Country: " + c.getAdd().getCountry());
+					}
+					
+				}else {
+					request.setAttribute("noItem", "There no items in your cart At this time");
+				}
+				
+				try {
+					String target = "./CheckOut.jsp";
+					request.getRequestDispatcher(target).forward(request, response);
+					return;
+				}catch(Exception e) {
+					e.printStackTrace();
+				}
+				
+			}else {
+				try {
+					String path = "./Login.jsp";
+					request.getRequestDispatcher(path).forward(request, response);
+					return;
+				}catch(Exception e) {
+					e.printStackTrace();
+				}
+			}
+			
+		}
 		
 		
 		

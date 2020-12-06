@@ -59,12 +59,23 @@
 							<li class="nav-item">
 							 <a class="nav-link" href="/BookStore/adminLogin.jsp">Admin Login</a>
 							</li>
-
 						</ul>
+										
+						
+						
 						<ul class="navbar-nav ml-auto">
-							<li class="nav-item"><a class="nav-link"
-								href="/BookStore/CheckOut.jsp"><i
-									class="fas fa-shopping-cart mr-1 text-gray"></i>Cart</a></li>
+						<li class="nav-item">
+						<form action="Profile" method="post">
+						<button name="viewProfile">Profile</button>
+						</form>
+						</li>
+							<li class="nav-item">
+							<form action="surfing" method="post">
+							<button name="btnForCart">
+							<i class="fas fa-shopping-cart mr-1 text-gray"></i>Cart
+							</button>
+							</form>
+							</li>
 							<li class="nav-item dropdown"><a
 								class="nav-link dropdown-toggle" href="/BookStore/Homeprof.jsp"
 								data-toggle="dropdown" aria-haspopup="true"
@@ -122,10 +133,6 @@
 				<button id="srchBtn">Search</button>
 			</form>
 			<br /> <br />
-			<form action="Profile" method="post">
-				<button name="viewProfile">Profile</button>
-			</form>
-			<br />
 			<form action="surfing" method="post">
 				<button name="viewCart">CheckOut</button>
 			</form>

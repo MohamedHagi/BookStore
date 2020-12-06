@@ -4,6 +4,8 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	id="WebApp_ID" version="3.0">
 	<display-name>BookStore</display-name>
+	
+	
 	<servlet>
 		<description>JAX-RS</description>
 		<servlet-name>Jersey</servlet-name>
@@ -12,13 +14,12 @@
 			<param-name>jersey.config.server.provider.packages</param-name>
 			<param-value>rest</param-value>
 		</init-param>
-		<load-on-startup>1</load-on-startup>
+		 <load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>Jersey</servlet-name>
 		<url-pattern>/rest/*</url-pattern>
 	</servlet-mapping>
-
 
 	<welcome-file-list>
 		<welcome-file>Main.java</welcome-file>

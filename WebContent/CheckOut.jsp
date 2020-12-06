@@ -94,8 +94,7 @@ ${noItem}
    <h2 class="h5 text-uppercase mb-4">Cart Details: <label class="h5 text-uppercase mb-4" for="cart">cart (${size})</label> ${removed}</h2>
 <!-- use c:for each to fill the table this is the cart -->
 
-
-<%-- <c:if test="${size > 0}">	 --%>
+<c:if test="${size > 0}">	 
 <table class="table">
   <tr>
     <th scope="row">Title</th>
@@ -147,7 +146,7 @@ ${noItem}
 <li class="px-3 py-2 mb-1 bg-white text-muted"><strong class="text-uppercase text-dark">${cont}</strong> </li>
 
 </ul>
-<%-- <c:if test="${count == 1}"> --%>
+<c:if test="${count == 1}"> 
 <div class="col-lg-6 form-group">
      <div class="custom-control custom-checkbox">
 <form action="Profile" method="get">
@@ -299,11 +298,11 @@ ${noItem}
 <!-- <br/> -->
 <!-- <button name="payNow" id="payNow">Pay</button> -->
 <!-- </form> -->
-<%-- </c:if> --%>
+</c:if>
 
 
 
-<%-- </c:if> --%>
+</c:if>
 
 </div>
 </div>
