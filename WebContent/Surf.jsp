@@ -201,7 +201,7 @@
 															type="hidden" name="quantity" value="${book.quantity}" />
 														<input type="hidden" name="category"
 															value="${book.category}" />
-														<button name="addToCart" id="btn btn-sm btn-dark">Add
+														<button class="btn btn-sm btn-dark"name="addToCart" id="btn btn-sm btn-dark">Add
 															to cart</button>
 													</form></li>
 												<li>
@@ -212,7 +212,7 @@
 															type="hidden" name="quantity" value="${book.quantity}" />
 														<input type="hidden" name="category"
 															value="${book.category}" />
-													<button name="details">Details</button>
+													<button class="btn btn-sm btn-dark" name="details">Details</button>
 														</form>
 												</li>
 											</ul>
