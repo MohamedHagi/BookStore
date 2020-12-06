@@ -51,7 +51,22 @@
                 
                 </ul>
                     <ul class="navbar-nav ml-auto">               
-                <li class="nav-item"><a class="nav-link" href="/BookStore/CheckOut.jsp"><i class="fas fa-shopping-cart mr-1 text-gray"></i>Cart</a></li>
+               
+               
+	
+						<li class="nav-item">
+						<form action="Profile" method="post">
+						<button class ="nav-link" name="viewProfile">Profile</button>
+						</form>
+						</li>
+							<li class="nav-item">
+							<form action="surfing" method="post">
+							<button class="nav-link" name="btnForCart">
+							<i class="fas fa-shopping-cart mr-1 text-gray"></i>Cart
+							</button>
+							</form>
+							</li>
+               
                 <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="/BookStore/Homeprof.jsp" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fas fa-user-alt mr-1 text-gray"></i>Your Account</a>
  <div class="dropdown-menu mt-3" aria-labelledby="pagesDropdown"><a class="dropdown-item border-0 transition-link" href="/BookStore/Login.jsp">Login</a><a class="dropdown-item border-0 transition-link" href="/BookStore/Register.jsp">Create a new account</a><div class="dropdown-divider"></div><a class="dropdown-item border-0 transition-link" href="/BookStore/Logout.jsp">Logout</a></div>
     
@@ -77,6 +92,15 @@
               <div class="col-lg-6">
                 <h1 class="h2 text-uppercase mb-0">Profile</h1>
               </div>
+              <div class="col-lg-6">
+              	<form method="post" action="logout" id="frm">
+	<button class="btn btn-outline-dark float-right" name="btnLogout">Logout</button>
+	</form>
+		<form method="post" action="Profile" id="frm2">
+	<button class="btn btn-outline-dark float-right" name="cartBtn">View Cart</button>
+	<button class="btn btn-outline-dark float-right" name="surfBtn">Shop</button>
+	</form>
+	</div>
           
             </div>
           </div>
@@ -89,31 +113,19 @@
                 <li class="px-3 py-2 mb-1 bg-white text-muted"><strong class="text-uppercase text-dark">Address:</strong><a class="reset-anchor ml-2" href="#">${stNo} ${stName} ${prov} ${cont}</a></li>
                 <li class="px-3 py-2 mb-1 bg-white text-muted"><strong class="text-uppercase text-dark">Credit Card:</strong><a class="reset-anchor ml-2" href="#">	${cardNo}  ${csv}  ${cardfName} ${cardlName} ${expdate}</a></li>
               </ul>
-<%-- 	${profileName} --%>
-<!-- 	<br /> -->
-<%-- 	${fname}, ${lname}  --%>
-<!-- 	<br /> -->
-<%-- 	Date Joined: ${date} --%>
-<!-- 	<br /> -->
+
 	<form method="get" action="AddInfo">
 		${add}
 	</form>
-<!-- 	<br /> -->
-<%-- 	${stNo} ${stName} ${prov} ${cont} --%>
-<!-- 	<br /> -->
-<%-- 	${cardNo}  ${csv}  ${cardfName} ${cardlName} ${expdate}  --%>
-	<form method="post" action="logout" id="frm">
-	<button name="btnLogout">Logout</button>
-	</form>
+
+
 	<br />
-	<form method="post" action="Profile" id="frm2">
-	<form method="get" action="Profile" id="frm2">
-	<button name="cartBtn">View Cart</button>
-	<br />
-	<button name="surfBtn">Surf</button>
-	</form>
+
 	<label for="cart">cart (${size}) Total:(${tot}):</label>
 	</div>
+	
+	
+
 <table class ="table">
   <tr>
     <th scope="row">Tittle</th>
