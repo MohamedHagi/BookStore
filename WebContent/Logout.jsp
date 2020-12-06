@@ -33,7 +33,7 @@
                  <a class="nav-link active" href="/BookStore/Main.jsp">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/BookStore/Surf.jsp">Shop</a>
+                  <a class="nav-link" href="/BookStore/adminLogin.jsp">Admin Login</a>
                 </li>
                 
                 </ul>
@@ -65,7 +65,7 @@
         <br>
         <br>
         <br>
-              <h2 h2 class="h5 text-uppercase mb-4" style="text-align:center">You have been successfully logged out!</h2>
+              <h2 class="h5 text-uppercase mb-4" style="text-align:center">You have been successfully logged out!</h2>
               </div>
               </div>
                           

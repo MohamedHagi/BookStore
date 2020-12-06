@@ -57,7 +57,7 @@
 								href="/BookStore/Main.jsp">Home</a>
 							</li>
 							<li class="nav-item">
-								<!-- Link--> <a class="nav-link" href="/BookStore/Surf.jsp">Shop</a>
+							 <a class="nav-link" href="/BookStore/adminLogin.jsp">Admin Login</a>
 							</li>
 
 						</ul>
@@ -190,7 +190,7 @@
 								<div class="product text-center">
 									<div class="position-relative mb-3">
 										<div class="badge text-white badge-"></div>
-										<img class="img-fluid w-100" src="img/product-1.jpg" alt="...">
+										<img class="img-fluid w-100" src="img/book-1.jpg" alt="...">
 										<div class="product-overlay">
 											<ul class="mb-0 list-inline">
 												<li class="list-inline-item m-0 p-0"><form
