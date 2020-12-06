@@ -66,12 +66,12 @@
 						<ul class="navbar-nav ml-auto">
 						<li class="nav-item">
 						<form action="Profile" method="post">
-						<button name="viewProfile">Profile</button>
+						<button class ="nav-link" name="viewProfile">Profile</button>
 						</form>
 						</li>
 							<li class="nav-item">
 							<form action="surfing" method="post">
-							<button name="btnForCart">
+							<button class="nav-link" name="btnForCart">
 							<i class="fas fa-shopping-cart mr-1 text-gray"></i>Cart
 							</button>
 							</form>
