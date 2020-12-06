@@ -33,7 +33,7 @@ public class CustProfileDAO {
 		Address a = new Address();
 		try {
 			Connection con = ds.getConnection();
-			String querry = "select fname, lname, email, streetno, djoined, street, unitno, province, country from customer, address"
+			String querry = "select fname, lname, email, streetno, djoined, street, unitno, province, country, pcode, city from customer, address"
 					+ " where cid = " + cid + " and cid_add = " + cid + ";";
 			PreparedStatement ps = con.prepareStatement(querry);
 			ResultSet rs = ps.executeQuery();
@@ -46,6 +46,8 @@ public class CustProfileDAO {
 				a.setUnitNo(rs.getInt("unitno"));
 				a.setProvince(rs.getString("province"));
 				a.setCountry(rs.getString("country"));
+				a.setCity(rs.getString("city"));
+				a.setPcode(rs.getString("pcode"));
 				c.setAdd(a);
 			}
 			rs.close();

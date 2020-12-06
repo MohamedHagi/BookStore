@@ -16,4 +16,20 @@ public class Rest {
 		String result = Model.getInstance().getXMLforRest(bid);
 		return result;
 	}
+	
+	
+	@GET
+	@Path("/purchase/")
+	@Produces("text/plain")
+	public String getPurchaseInfo(@QueryParam("poid") int poid) {
+		String result = "";
+		try {
+			result = Model.getInstance().getXMLForRestForPurchaseOrder(poid);
+		} catch (ClassNotFoundException e) {
+			result = "An error occurred";
+		}catch(NullPointerException e) {
+			result = "Sorry, value not found";
+		}
+		return result;
+	}
 }

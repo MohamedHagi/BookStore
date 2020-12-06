@@ -217,6 +217,8 @@ public class surfing extends HttpServlet {
 					request.setAttribute("tot", total);
 					request.setAttribute("shipping", sci.getCarrierFlatRate());
 					request.setAttribute("orderTot", m.returnCartTotal(total, sci.getTaxRate(), sci.getTariffs(), sci.getCarrierFlatRate()));
+				}else {
+					request.setAttribute("noItem", "There no items in your cart At this time");
 				}
 				try {
 					String path = "./CheckOut.jsp";

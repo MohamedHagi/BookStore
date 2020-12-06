@@ -50,6 +50,7 @@ public class Main extends HttpServlet {
 		String login = request.getParameter("btnLogin");
 		String register = request.getParameter("btnRegister");
 		String surf = request.getParameter("btnSurf");
+		String admin = request.getParameter("btnAdmin");
 		if(login == null && register == null && surf == null) {
 			System.out.println("login " + login + ", register" + register + ", surf" + surf);
 			String target = "./Main.jsp";
@@ -76,6 +77,17 @@ public class Main extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
+		
+		if(admin != null) {
+			try {
+				String target = "./adminLogin.jsp";
+				request.getRequestDispatcher(target).forward(request, response);
+				return;
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
 		
 		if(surf != null) {
 			HashSet<Book> hs = m.retrieveBooks();

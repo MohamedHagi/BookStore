@@ -26,7 +26,7 @@
 	<button name="btnLogout">Logout</button>
 	</form>
 	<br />
-	<form method="get" action="Profile" id="frm2">
+	<form method="post" action="Profile" id="frm2">
 	<button name="cartBtn">View Cart</button>
 	<br />
 	<button name="surfBtn">Surf</button>

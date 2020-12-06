@@ -18,6 +18,7 @@ import Bean.CartItem;
 import Bean.CreditCard;
 import Bean.Customers;
 import Bean.ListWrapperBook;
+import Bean.ListWrapperPurchaseOrder;
 import Bean.LoginType;
 import Bean.PurchaseOrder;
 import Bean.Review;
@@ -575,6 +576,56 @@ public class Model {
 			return null;
 		}
 	}
+	
+	
+	/*
+	 * XML for second REST API 
+	 * 
+	 * */
+	public String getXMLForRestForPurchaseOrder(int poid) {
+		String result = "";
+		PurchaseOrder po = pod.getTheOrderQuerry(poid);
+		ListWrapperPurchaseOrder lwp = new ListWrapperPurchaseOrder(po.getcID(), po.getStat(), po.getEmail(), po.getCard());
+		try {
+			JAXBContext jc = JAXBContext.newInstance(lwp.getClass());
+			Marshaller marsh = jc.createMarshaller();
+			StringWriter sw = new StringWriter();
+			marsh.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+			marsh.marshal(lwp, new StreamResult(sw));
+			result = sw.toString();
+			System.out.println(result);
+			return result;
+		} catch (JAXBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	/*
+	 * update the address
+	 * */
+	public boolean updateAddress(String streetNum, String unitNum, String street, String city, String pcode, String country, String state,
+			String email) {
+		boolean result = false;
+		int streetN = Integer.parseInt(streetNum);
+		int unitN = Integer.parseInt(unitNum);
+		int check = sd.updateAdd(streetN, unitN, street, city, pcode, country, state, email);
+		if(check == 1) {
+			return true;
+		}
+		return result;
+	}
+	
+	public boolean checkForempty(String streetNum, String unitNum, String street, String city, String pcode, String country, String state,
+			String email) {
+		if(streetNum.equals("") || street.equals("") || unitNum.equals("") || city.equals("") || pcode.equals("") || country.equals("") 
+				|| state.equals("") || email.equals("")) {
+			return false;
+		}
+		return true;
+	}
+	
 	
 	
 }

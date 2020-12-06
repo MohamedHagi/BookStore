@@ -3,16 +3,13 @@ package ctrl;
 import java.io.IOException;
 
 
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Bean.Recipt;
-import DAO.ProcessOrderDAO;
-import DAO.ReciptDAO;
-import DAO.ReviewDAO;
 import DAO.ShippingDAO;
 
 
@@ -36,10 +33,8 @@ public class Test extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		ReviewDAO rd = new ReviewDAO();
-		long milis = System.currentTimeMillis();
-		java.sql.Date date = new java.sql.Date(milis);
-		int result = rd.InsertReviewIntoDB("Very bad", "mathewhatden@gmail.com", "Pathology", date);
+		ShippingDAO sd = new ShippingDAO();
+		int result = sd.updateAdd(20, 10, "Thorncliffe", "Toronto", "M4J 1J5", "Canada", "Ontario", "mathewhayden@gmail.com");
 		System.out.println(result);
 	}
 

@@ -9,13 +9,15 @@ public class Address {
 	private String province;
 	private String country;
 	private String phoneNo;
+	private String pcode;
+	private String city;
 	
 	public Address() {
 		
 	}
 	
 	public Address(String aid, String street, int streetNo, int unitNo, String province, String country,
-			String phoneNo) {
+			String phoneNo, String pcode, String city) {
 		this.aid = aid;
 		this.street = street;
 		this.streetNo = streetNo;
@@ -23,6 +25,24 @@ public class Address {
 		this.province = province;
 		this.country = country;
 		this.phoneNo = phoneNo;
+		this.pcode = pcode;
+		this.city = city;
+	}
+
+	public String getPcode() {
+		return pcode;
+	}
+
+	public void setPcode(String pcode) {
+		this.pcode = pcode;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
 	}
 
 	public String getAid() {

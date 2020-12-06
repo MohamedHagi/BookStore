@@ -256,6 +256,12 @@ public class Profile extends HttpServlet {
 		if (request.getParameter("cartBtn") != null) {
 			try {
 				String ID = (String) request.getSession().getAttribute("ID");
+				Customers c = m.PrintcustInfo(ID);
+				int count = 0;
+				if(c.getAdd() == null) {
+					request.setAttribute("count", count);
+					request.setAttribute("add", " <a href=\"/BookStore/AddAddress.jsp\">Add Address</a>");
+				}
 				ArrayList<CartItem> al = m.GetCartItems(ID);
 				request.setAttribute("size", al.size());
 				request.setAttribute("la", al);
@@ -268,7 +274,22 @@ public class Profile extends HttpServlet {
 					request.setAttribute("tot", total);
 					request.setAttribute("shipping", sci.getCarrierFlatRate());
 					request.setAttribute("orderTot",
-							m.returnCartTotal(total, sci.getTaxRate(), sci.getTariffs(), sci.getCarrierFlatRate()));
+							 m.returnCartTotal(total, sci.getTaxRate(), sci.getTariffs(), sci.getCarrierFlatRate()));
+					if(c.getAdd() != null) {
+						count = 1;
+						request.setAttribute("count", count);
+						request.setAttribute("conf", "Confirm Address: ");
+						request.setAttribute("stNum", "Street Number: " + c.getAdd().getStreetNo());
+						request.setAttribute("unitNo", "Unit Number: " + c.getAdd().getUnitNo());
+						request.setAttribute("stName", "Street Name: " + c.getAdd().getStreet());
+						request.setAttribute("pcode", "Postal Code: " + c.getAdd().getPcode());
+						request.setAttribute("city", "City: "  + c.getAdd().getCity());
+						request.setAttribute("state", "State: " + c.getAdd().getProvince());
+						request.setAttribute("cont", "Country: " + c.getAdd().getCountry());
+					}
+					
+				}else {
+					request.setAttribute("noItem", "There no items in your cart At this time");
 				}
 			} catch (NullPointerException e) {
 				request.setAttribute("list", "0");
@@ -282,6 +303,108 @@ public class Profile extends HttpServlet {
 			}
 		}
 
+		if(request.getParameter("updateAdd") != null) {
+			String ID = (String) request.getSession().getAttribute("ID");
+			Customers c = m.PrintcustInfo(ID);
+			String sNum = request.getParameter("streetNumber");
+			String sName = request.getParameter("streetName");
+			String unit = request.getParameter("unitNo");
+			String postCode = request.getParameter("postcode");
+			String city = request.getParameter("city");
+			String state = request.getParameter("state");
+			String cont = request.getParameter("country");
+			boolean check = m.checkForempty(sNum, unit, sName, city, postCode, cont, state, ID);
+			if(!check) {
+				request.setAttribute("emp", "check for empty fields");
+			}
+			boolean res = m.updateAddress(sNum, unit, sName, city, postCode, cont, state, ID);
+			if(!res) {
+				request.setAttribute("notDone", "Address Not updated");
+				int count = 0;
+				ArrayList<CartItem> al = m.GetCartItems(ID);
+				request.setAttribute("size", al.size());
+				request.setAttribute("la", al);
+				if (al.size() > 0) {
+					ShippingCountryInfo sci = new ShippingCountryInfo();
+					sci = m.getDilieveryPrices(ID);
+					double total = m.GetCartTotal(ID);
+					request.setAttribute("tax", sci.getTaxRate());
+					request.setAttribute("tar", sci.getTariffs());
+					request.setAttribute("tot", total);
+					request.setAttribute("shipping", sci.getCarrierFlatRate());
+					request.setAttribute("orderTot",
+							 m.returnCartTotal(total, sci.getTaxRate(), sci.getTariffs(), sci.getCarrierFlatRate()));
+					if(c.getAdd() != null) {
+						count = 1;
+						request.setAttribute("count", count);
+						request.setAttribute("conf", "Confirm Address: ");
+						request.setAttribute("stNum", "Street Number: " + c.getAdd().getStreetNo());
+						request.setAttribute("unitNo", "Unit Number: " + c.getAdd().getUnitNo());
+						request.setAttribute("stName", "Street Name: " + c.getAdd().getStreet());
+						request.setAttribute("pcode", "Postal Code: " + c.getAdd().getPcode());
+						request.setAttribute("city", "City: "  + c.getAdd().getCity());
+						request.setAttribute("state", "State: " + c.getAdd().getProvince());
+						request.setAttribute("cont", "Country: " + c.getAdd().getCountry());
+					}
+					
+				}else {
+					request.setAttribute("noItem", "There no items in your cart At this time");
+				}
+				
+				
+				try {
+					String target = "./CheckOut.jsp";
+					request.getRequestDispatcher(target).forward(request, response);
+					return;
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+			int count = 0;
+			ArrayList<CartItem> al = m.GetCartItems(ID);
+			request.setAttribute("size", al.size());
+			request.setAttribute("la", al);
+			if (al.size() > 0) {
+				ShippingCountryInfo sci = new ShippingCountryInfo();
+				sci = m.getDilieveryPrices(ID);
+				double total = m.GetCartTotal(ID);
+				request.setAttribute("tax", sci.getTaxRate());
+				request.setAttribute("tar", sci.getTariffs());
+				request.setAttribute("tot", total);
+				request.setAttribute("shipping", sci.getCarrierFlatRate());
+				request.setAttribute("orderTot",
+						 m.returnCartTotal(total, sci.getTaxRate(), sci.getTariffs(), sci.getCarrierFlatRate()));
+				if(c.getAdd() != null) {
+					count = 1;
+					request.setAttribute("count", count);
+					request.setAttribute("conf", "Confirm Address: ");
+					request.setAttribute("stNum", "Street Number: " + c.getAdd().getStreetNo());
+					request.setAttribute("unitNo", "Unit Number: " + c.getAdd().getUnitNo());
+					request.setAttribute("stName", "Street Name: " + c.getAdd().getStreet());
+					request.setAttribute("pcode", "Postal Code: " + c.getAdd().getPcode());
+					request.setAttribute("city", "City: "  + c.getAdd().getCity());
+					request.setAttribute("state", "State: " + c.getAdd().getProvince());
+					request.setAttribute("cont", "Country: " + c.getAdd().getCountry());
+				}
+				
+			}else {
+				request.setAttribute("noItem", "There no items in your cart At this time");
+			}
+			
+			try {
+				String target = "./CheckOut.jsp";
+				request.getRequestDispatcher(target).forward(request, response);
+				return;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+		
+		
+		
+		
 		if (request.getParameter("payBtn") != null) {
 			if (request.getParameter("check").equals("on")) {
 				System.out.println("gets here");
@@ -315,7 +438,8 @@ public class Profile extends HttpServlet {
 				}
 			}
 		}
-
+		
+		
 		if (request.getParameter("payNow") != null) {
 			String ID = (String) request.getSession().getAttribute("ID");
 			String num = request.getParameter("Inp");

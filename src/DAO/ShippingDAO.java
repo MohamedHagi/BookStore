@@ -99,4 +99,25 @@ public class ShippingDAO {
 		}
 		return result;
 	}
+	
+	public int updateAdd(int streetNum, int unitNum, String street, String city, String pcode, String country, String state,
+			String email) {
+		int result = 0;
+		try {
+			Connection c = ds.getConnection();
+			String sql = "UPDATE address SET streetno ="+ streetNum + ", street = '" + street + "', unitno ="+ unitNum 
+					+ " , province='"+ state +"', "
+					+ "country = '"+ country + "', pcode='" + pcode + "', city='" + city + "' "
+					+ " WHERE (cid_add in (select cid from customer where email ='" + email + "'));";
+			PreparedStatement ps = c.prepareStatement(sql);
+			result = ps.executeUpdate();
+			ps.close();
+			c.close();
+			return result;
+			
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return result;
+	}
 }

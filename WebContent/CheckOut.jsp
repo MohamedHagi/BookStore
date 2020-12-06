@@ -10,11 +10,14 @@
 </head>
 <body>
 Checkout Page!
+
+<br/>
+${noItem}
 <br/>
 <!-- use c:for each to fill the table this is the cart -->
-${noItem}
 <label for="cart">cart (${size})</label> ${removed}
-	
+
+<c:if test="${size > 0}">	
 <table>
   <tr>
     <th>Tittle</th>
@@ -53,15 +56,72 @@ Tariffs: ${tar}
 <br/>
 Shipping and Handling: ${shipping}
 <br/>
-Order Total: ${orderTot}
+Order Total: $${orderTot}
 <br/>
-<!-- Add the pay add the payment link here -->
+
+<br/>
+${add}
+<br />
+${conf}
+<br/>
+${stNum}
+<br/>
+${unitNo}
+<br/>
+${stName}
+<br/>
+${pcode}
+<br/>
+${city}
+<br/>
+${state}
+<br/>
+${cont}
+
+<c:if test="${count == 1}">
+
 <form action="Profile" method="get">
 <label for="check" id="labelCheck">Use Stored Address and Card Information</label>
 <input type="checkbox" name="check" id="check"/>
 <br />
 <button name="payBtn" id="payBtn">Pay</button>
 </form>
+
+<br/>
+
+${notDone}
+${emp}
+<form action="Profile" method="post">
+
+<label for="streetNumber">Street Number: </label>
+<input id="streetNumber" name = "streetNumber" type="text" placeholder="e.g. 47"/>
+     
+ <br/>            
+<label for="streetName">Street Name: </label>
+<input id="streetName" name="streetName" type="text" placeholder="Your Street name"/>
+ 
+<br/>              
+<label for="unitNo">Unit Number: </label>
+<input id="unitNo" name="unitNo" type="text" placeholder="House/Unit number"/>
+
+<br/>
+<label for="postcode">Postal Code: </label>
+<input id="postcode" name="postcode" type="text" placeholder="Enter Postal Code"/>
+
+<br/>              
+<label for="country">Country: </label>
+<input id="country" name="country" type="text" placeholder="Country"/>
+<br/>            
+<label for="state">State/County: </label>
+<input id="state" name="state" type="text" placeholder="e.g. Ontario"/>
+
+<br/>
+<label for="city">Town/City: </label>
+<input id="city" name="city" type="text" placeholder="e.g. Toronto" />
+<br />
+<button name="updateAdd">Update</button>
+</form>
+
 
 ${Error}
 <form action="Profile" method="get">
@@ -79,7 +139,10 @@ ${Error}
 <br/>
 <button name="payNow" id="payNow">Pay</button>
 </form>
+</c:if>
 
 
+
+</c:if>
 </body>
 </html>
