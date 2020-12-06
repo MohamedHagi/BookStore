@@ -104,7 +104,7 @@
                 <li class="list-inline-item m-0"><i class="fas fa-star small text-warning"></i></li>
                 <li class="list-inline-item m-0"><i class="fas fa-star small text-warning"></i></li>
               </ul>
-              <h1>${bookTitle}</h1>
+              <h1>${bookTittle}</h1>
 
               <ul class="list-unstyled small d-inline-block">
               <li class="px-3 py-2 mb-1 bg-white"><strong class="text-uppercase">Genre:</strong><span class="ml-2 text-muted">${categ}</span></li>  
@@ -112,7 +112,18 @@
               <li class="px-3 py-2 mb-1 bg-white"><strong class="text-uppercase">Price:</strong><span class="ml-2 text-muted">${price}</span></li>
                 
               </ul>
-                <div class="col-sm-5 pl-sm-0"><a class="btn btn-dark btn-sm" href="cart.html">Add to cart</a></div>
+                <div class="col-sm-5 pl-sm-0">
+                	<form action="surfing" method="get">
+                	<input type="hidden" name="productID" value="${productID}" /> <input
+															type="hidden" name="bookTittle" value="${bookTittle}" /> <input
+															type="hidden" name="price" value="${price}" />
+														<input type="hidden" name="categ"
+															value="${categ}" />
+                	
+                	
+                	
+                	<button class="btn btn-dark btn-sm" name="addToCartFromDetails">Add to cart</button> </form>
+                </div>
                 <hr>
                   <h2 class="h5 text-uppercase mb-4" style="text-align:center">Reviews</h2>
                   <br>

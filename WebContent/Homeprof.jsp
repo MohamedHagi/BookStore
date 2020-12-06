@@ -105,12 +105,9 @@
 	<form method="post" action="logout" id="frm">
 	<button name="btnLogout">Logout</button>
 	</form>
-<<<<<<< HEAD
 	<br />
 	<form method="post" action="Profile" id="frm2">
-=======
 	<form method="get" action="Profile" id="frm2">
->>>>>>> 6dbc7ac99cd3780eafcf9235baadaa74e9f64ca4
 	<button name="cartBtn">View Cart</button>
 	<br />
 	<button name="surfBtn">Surf</button>

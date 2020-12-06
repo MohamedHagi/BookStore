@@ -6,8 +6,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import Model.Model;
 
-@Path("book")
-public class Rest {
+@Path("/book")
+public class Book {
 
 	@GET
 	@Path("/read/")

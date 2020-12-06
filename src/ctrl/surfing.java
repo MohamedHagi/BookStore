@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import Bean.Book;
 import Bean.Cart;
 import Bean.CartItem;
+import Bean.Customers;
 import Bean.Review;
 import Bean.ShippingCountryInfo;
 import Model.Model;
@@ -122,6 +123,59 @@ public class surfing extends HttpServlet {
 			}
 		}
 		
+		if(request.getParameter("addToCartFromDetails") != null) {
+			String price = request.getParameter("price");
+			String productID = request.getParameter("productID");
+			String bookTittle = request.getParameter("bookTittle");
+			String categ = request.getParameter("categ");
+			if (request.getSession().getAttribute("ID") != null) {
+				int cartId = m.getCartID(ID);
+				System.out.println("The cart id is " + cartId);
+				int j = m.insertItemIntoCart(productID, cartId, bookTittle, price, categ);
+				if (j == 1) {
+					ArrayList<CartItem> al = m.GetCartItems(ID);
+					request.getSession().setAttribute("cartList", al);
+					request.setAttribute("succ", "Item added to cart");
+				} else {
+					request.setAttribute("fail", "The item hasnt been added");
+				}
+			} else if (request.getSession().getAttribute("ID") == null) {
+				CartItem ci = new CartItem();
+				Cart c = (Cart) request.getSession().getAttribute("cart");
+				if(c == null) {
+					c = new Cart();
+					c.setB(new ArrayList<CartItem>());
+					request.getSession().setAttribute("cart", c);
+				}
+				ci.setBookTittle(bookTittle);
+				ci.setPrice(Double.parseDouble(price));
+				ci.setProductID(Integer.parseInt(productID));
+				ci.setCategory(categ);
+				boolean val = c.addanIteaminASession(ci);
+				request.getSession().setAttribute("cartList", c.getList());
+				if (val) {
+					request.setAttribute("fail", "Item added to cart");
+				} else {
+					request.setAttribute("fail", "The item hasnt been added");
+				}
+
+			}
+			HashSet<Book> hs = m.retrieveBooks();
+			try {
+				request.setAttribute("hash", hs);
+				String target = "./Surf.jsp";
+				request.getRequestDispatcher(target).forward(request, response);
+				return;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			
+			
+		}
+		
+		
+		
 		if(request.getParameter("reviewInsert") != null) {
 			String price = request.getParameter("price");
 			String productID = request.getParameter("bid");
@@ -132,6 +186,12 @@ public class surfing extends HttpServlet {
 			request.setAttribute("productID", productID);
 			request.setAttribute("bookTittle", bookTittle);
 			request.setAttribute("categ", categ);
+			ArrayList<Review> r = m.getTheReview(bookTittle);
+			if(r.size() == 0) {
+				request.setAttribute("noReview", "No reviews for this product yet!");
+			}else {
+				request.setAttribute("review", r);
+			}
 			if(ID != null){
 				boolean result = m.insertIntoReview(comment, ID, bookTittle);
 				if(result) {
@@ -152,7 +212,6 @@ public class surfing extends HttpServlet {
 		
 		try {
 			if (request.getParameter("addToCart") != null) {
-				System.out.println(ID);
 				String price = request.getParameter("price");
 				String productID = request.getParameter("bid");
 				String bookTittle = request.getParameter("tittle");
@@ -203,12 +262,25 @@ public class surfing extends HttpServlet {
 			e.printStackTrace();
 		}
 		
+		
+		
+		
+		
+		
+		
+		
 		if(request.getParameter("viewCart") != null) {
 			if(request.getSession().getAttribute("ID") != null){
+				Customers c = m.PrintcustInfo(ID);
+				int count = 0;
+				if(c.getAdd() == null) {
+					request.setAttribute("count", count);
+					request.setAttribute("add", " <a href=\"/BookStore/AddAddress.jsp\">Add Address</a>");
+				}
 				ArrayList<CartItem> al = m.GetCartItems(ID);
 				request.setAttribute("size", al.size());
 				request.setAttribute("la", al);
-				if(al.size() > 0) {
+				if (al.size() > 0) {
 					ShippingCountryInfo sci = new ShippingCountryInfo();
 					sci = m.getDilieveryPrices(ID);
 					double total = m.GetCartTotal(ID);
@@ -216,23 +288,34 @@ public class surfing extends HttpServlet {
 					request.setAttribute("tar", sci.getTariffs());
 					request.setAttribute("tot", total);
 					request.setAttribute("shipping", sci.getCarrierFlatRate());
-					request.setAttribute("orderTot", m.returnCartTotal(total, sci.getTaxRate(), sci.getTariffs(), sci.getCarrierFlatRate()));
+					request.setAttribute("orderTot",
+							 m.returnCartTotal(total, sci.getTaxRate(), sci.getTariffs(), sci.getCarrierFlatRate()));
+					if(c.getAdd() != null) {
+						count = 1;
+						request.setAttribute("count", count);
+						request.setAttribute("conf", "Confirm Address: ");
+						request.setAttribute("stNum", "Street Number: " + c.getAdd().getStreetNo());
+						request.setAttribute("unitNo", "Unit Number: " + c.getAdd().getUnitNo());
+						request.setAttribute("stName", "Street Name: " + c.getAdd().getStreet());
+						request.setAttribute("pcode", "Postal Code: " + c.getAdd().getPcode());
+						request.setAttribute("city", "City: "  + c.getAdd().getCity());
+						request.setAttribute("state", "State: " + c.getAdd().getProvince());
+						request.setAttribute("cont", "Country: " + c.getAdd().getCountry());
+					}
+					
 				}else {
 					request.setAttribute("noItem", "There no items in your cart At this time");
 				}
+				
 				try {
-					String path = "./CheckOut.jsp";
-					request.getRequestDispatcher(path).forward(request, response);
+					String target = "./CheckOut.jsp";
+					request.getRequestDispatcher(target).forward(request, response);
 					return;
 				}catch(Exception e) {
 					e.printStackTrace();
 				}
+				
 			}else {
-//				if(request.getSession().getAttribute("cartList") == null) {
-//					request.setAttribute("noItem", "Empty cart");
-//				}else {
-//					request.setAttribute("la", request.getSession().getAttribute("cartList"));
-//				}
 				try {
 					String path = "./Login.jsp";
 					request.getRequestDispatcher(path).forward(request, response);
@@ -269,3 +352,5 @@ public class surfing extends HttpServlet {
 	}
 
 }
+
+
