@@ -133,14 +133,13 @@
 				<button id="srchBtn">Search</button>
 			</form>
 			<br /> <br />
-			<form action="surfing" method="post">
-				<button name="viewCart">CheckOut</button>
-			</form>
 			${fail}
-			<table>
+			 <div class="col-lg-6">
+			 <h2 class="h5 text-uppercase mb-4" style="text-align:center">Items in cart:</h2>
+			<table class="table">
 				<tr>
-					<th>Tittle</th>
-					<th>Price</th>
+					<th scope="row">Tittle</th>
+					<th scope="row">Price</th>
 				</tr>
 				<c:forEach var="CartItem" items="${cartList}">
 					<tr>
@@ -150,7 +149,7 @@
 				</c:forEach>
 			</table>
 			<br /> ${Er} ${succ} ${fail} <br />
-
+</div>
 
 			<!-- <table> -->
 			<!--   <tr> -->

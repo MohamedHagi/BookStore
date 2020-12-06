@@ -146,6 +146,8 @@ ${noItem}
 <li class="px-3 py-2 mb-1 bg-white text-muted"><strong class="text-uppercase text-dark">${cont}</strong> </li>
 
 </ul>
+${notDone}
+${emp}
 <c:if test="${count == 1}"> 
 <div class="col-lg-6 form-group">
      <div class="custom-control custom-checkbox">
@@ -246,10 +248,8 @@ ${noItem}
                
                   </div>
                  
-                  
-
-<%-- ${notDone} --%>
-<%-- ${emp} --%>
+                  </div>
+ 
 <!-- <form action="Profile" method="post"> -->
 
 <!-- <label class="text-small text-uppercase" for="streetNumber">Street Number: </label> -->
