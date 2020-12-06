@@ -84,7 +84,7 @@ public class AddInfo extends HttpServlet {
 						request.setAttribute("expdate", cc.getExpirydate());
 						request.setAttribute("profileName", request.getParameter("id"));
 					}catch(NullPointerException e){
-						request.setAttribute("add", "Add your address <button>Add Information</button>");
+						request.setAttribute("add", "<strong class=\"text-uppercase text-dark\">Add your address</strong><button class=\"reset-anchor ml-2\">Add Information</button>");
 					}
 					try {
 					String path = "./Homeprof.jsp";
