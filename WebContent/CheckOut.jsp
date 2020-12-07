@@ -35,6 +35,16 @@
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 </head>
 <body>
+
+
+<% 
+response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+response.setHeader("Pragma", "no-cache");
+response.setDateHeader("Expires", 0);
+
+%>
+
+
    <div class="page-holder">
  <header class="header bg-white">
  <div class="container px-0 px-lg-3">

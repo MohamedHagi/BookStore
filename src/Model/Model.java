@@ -444,7 +444,7 @@ public class Model {
 		System.out.println(st.toString());
 		if (st == Status.DENIED) {
 			if (pod.InsertIntoProcessedOrder(cust_id, email, st.toString(), cardno, date) == 1) {
-				result = "Sorry unable to process your Querry please call 1-800-500-200";
+				result = "Sorry Credit Card Authorization failed please call 1-800-500-200";
 				return result;
 			} else {
 				return "Server Error Please call tech Support!";

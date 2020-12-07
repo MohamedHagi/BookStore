@@ -136,6 +136,7 @@
 			${fail}
 			 <div class="col-lg-6">
 			 <h2 class="h5 text-uppercase mb-4" style="text-align:center">Items in cart:</h2>
+			 ${removed}
 			<table class="table">
 				<tr>
 					<th scope="row">Tittle</th>
@@ -145,6 +146,17 @@
 					<tr>
 						<td>${CartItem.bookTittle}</td>
 						<td>${CartItem.price}</td>
+						<td>
+							<form action="surfing" method="post">
+							<input type="hidden" name="productID" value="${CartItem.productID}"/>
+    	 					<input type="hidden" name="tittle" value="${CartItem.bookTittle}"/>
+    	 					<input type="hidden" name="addID" value="${CartItem.addID}" />
+    						<input type="hidden" name="price" value="${CartItem.price}"/>
+    	 					<input type="hidden" name="category" value="${CartItem.category}"/>
+								<button name="rmFromCart">Remove</button>
+							</form>
+						
+						</td>
 					</tr>
 				</c:forEach>
 			</table>

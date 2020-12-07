@@ -262,6 +262,60 @@ public class surfing extends HttpServlet {
 			e.printStackTrace();
 		}
 		
+		
+		if(request.getParameter("rmFromCart") != null) {
+			String productID = request.getParameter("productID");
+			String tittle = request.getParameter("tittle");
+			String addID = request.getParameter("addID");
+			String price = request.getParameter("price");
+			String category = request.getParameter("category");
+			if (request.getSession().getAttribute("ID") != null) {
+				try {
+					int result = m.removeFromtheCart(productID, tittle, addID, price, category);
+					if (result == 0) {
+						request.setAttribute("removed", "The item has been successfully removed");
+					} else {
+						request.setAttribute("removed", "The item has not been removed");
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				try {
+					ID = (String) request.getSession().getAttribute("ID");
+					request.setAttribute("tot", m.GetCartTotal(ID));
+					ArrayList<CartItem> al = m.GetCartItems(ID);
+					request.setAttribute("cartList", al);
+				} catch (NullPointerException e) {
+					request.setAttribute("list", "0");
+				}
+		}else {
+			Cart c = (Cart) request.getSession().getAttribute("cart");
+			for (int i = 0; i < c.getList().size(); i++) {
+				CartItem ci = c.getList().get(i);
+				if (ci.getProductID() == Integer.parseInt(productID) && ci.getBookTittle().equals(tittle)
+						&& ci.getPrice() == Double.parseDouble(price)) {
+					c.getList().remove(i);
+				}
+			}
+			request.setAttribute("cartList", c.getList());
+		}
+			HashSet<Book> hs = m.retrieveBooks();
+			try {
+				request.setAttribute("hash", hs);
+				String target = "./Surf.jsp";
+				request.getRequestDispatcher(target).forward(request, response);
+				return;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			
+		}
+		
+		
+		
+		
+		
 		if(request.getParameter("btnForCart") != null) {
 			
 			

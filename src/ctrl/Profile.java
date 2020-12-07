@@ -443,14 +443,15 @@ public class Profile extends HttpServlet {
 		
 		if (request.getParameter("payNow") != null) {
 			String ID = (String) request.getSession().getAttribute("ID");
-			String num = request.getParameter("Inp");
-			String cvv = request.getParameter("cvv");
-			String name = request.getParameter("name");
+			String num = request.getParameter("cNumber");
+			String cvv = request.getParameter("csv");
+			String name = request.getParameter("fname");
 			String exp = request.getParameter("expdate");
 			Date d = Date.valueOf(exp);
 			boolean var = m.chekExpiry(d);
-			boolean checkForEmpty = m.checkTheString(num, cvv, name, exp);
-			if (var && checkForEmpty) {
+			//boolean checkForEmpty = m.checkTheString(num, cvv, name, exp);
+			System.out.println(num + " " +cvv+ " " + " " +name+ " " + exp);
+			if (var) {
 				ArrayList<CartItem> al = m.GetCartItems(ID);
 				if (var && al.size() > 0) {
 					String confirmation = m.PurchaseOrderQueries(ID, num, al);
