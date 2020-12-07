@@ -61,7 +61,22 @@ response.setDateHeader("Expires", 0);
                 
                 </ul>
                     <ul class="navbar-nav ml-auto">               
-                <li class="nav-item"><a class="nav-link" href="/BookStore/CheckOut.jsp"><i class="fas fa-shopping-cart mr-1 text-gray"></i>Cart</a></li>
+
+
+	
+						<li class="nav-item">
+						<form action="Profile" method="post">
+						<button class ="nav-link" name="viewProfile">Profile</button>
+						</form>
+						</li>
+							<li class="nav-item">
+							<form action="surfing" method="post">
+							<button class="nav-link" name="btnForCart">
+							<i class="fas fa-shopping-cart mr-1 text-gray"></i>Cart
+							</button>
+							</form>
+							</li>
+
                 <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="/BookStore/Homeprof.jsp" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fas fa-user-alt mr-1 text-gray"></i>Your Account</a>
  <div class="dropdown-menu mt-3" aria-labelledby="pagesDropdown"><a class="dropdown-item border-0 transition-link" href="/BookStore/Login.jsp">Login</a><a class="dropdown-item border-0 transition-link" href="/BookStore/Register.jsp">Create a new account</a><div class="dropdown-divider"></div><a class="dropdown-item border-0 transition-link" href="/BookStore/Logout.jsp">Logout</a></div>
     
